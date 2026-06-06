@@ -1,0 +1,73 @@
+<header class="logo">
+    <h1>
+        Tende<span class="logo-span">fy</span>
+    </h1>
+    <img class="logo-img" src="/logo.png" alt="logo">
+</header>
+
+<main class="profile-container">
+
+    <div class="card" [style.transform]="transformStyle()" (mousedown)="startDrag($event)"
+        (mouseup)="endDrag()" (mousemove)="moveCard($event)">
+
+        <div class="fade">
+
+        </div>
+         <img class="profile-image"  draggable="false"  [src]="profile.pic" alt="user">
+
+
+
+        <div class="online-status">
+            En línea
+        </div>
+
+        <div class="profile-info">
+
+            <h2>
+                {{ profile.name }}, {{ profile.age }}
+            </h2>
+
+            <p>
+                <span class="material-symbols-outlined">
+                    edit_location
+                </span>
+
+                {{ profile.location }}
+            </p>
+
+            <p>
+                {{ profile.description }}
+            </p>
+
+            <div class="artists">
+
+                @for (artist of profile.artists; track artist) {
+                <div class="artist">
+                    {{ artist }}
+                </div>
+                }
+
+                <div class="artist current">
+                    {{ profile.currentArtist }}
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</main>
+
+<footer class="action-buttons">
+
+    <button class="dislike-btn">
+        ✕
+    </button>
+
+    <button class="like-btn">
+        ♥
+    </button>
+
+
+</footer>
