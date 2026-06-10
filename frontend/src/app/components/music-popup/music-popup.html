@@ -1,0 +1,43 @@
+<div class="popup-container">
+
+    <div
+        class="current-artist"
+        (mousedown)="$event.stopPropagation()"
+        (click)="toggle()">
+
+        <img src="music_note_2_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="">{{artist}}
+
+    </div>
+
+    @if(expanded){
+
+    <div
+        class="popup"
+        (mousedown)="$event.stopPropagation()">
+
+        <img
+            class="cover"
+            [src]="cover"
+            alt="album">
+
+        <div class="popup-content">
+
+            <h3 class="track">
+                {{track}}
+            </h3>
+
+            <p class="artist-name">
+                {{artist}}
+            </p>
+
+            <div class="listening">
+                Escuchando ahora
+            </div>
+
+        </div>
+
+    </div>
+
+    }
+
+</div>
