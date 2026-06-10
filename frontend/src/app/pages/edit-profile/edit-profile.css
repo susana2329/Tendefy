@@ -1,0 +1,268 @@
+/* 
+Imagen del perfil con el boton
+*/
+
+.imagen img {
+    width: 60%;
+    border-radius: 70%;
+    height: 130px;
+    border: solid 5px #fc3ea0FF;
+    aspect-ratio: 9/16;
+}
+
+.imagen {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+}
+
+
+.fotoButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3%;
+
+}
+
+button {
+    border-radius: 30px;
+    border-color: #fc3ea0FF;
+    border: dashed ;
+    background-color: #000000FF;
+    color: #fc3ea0FF;
+    border-width: 2px;
+    width: 51%;
+    height: 45px;
+    display: flex;
+    gap: 5%;
+    justify-content: center;
+    align-items: center;
+    font-size: 80%;
+}
+
+.buttonCambiarFoto img {
+    width: 15%;
+}
+
+.buttonCambiarFoto {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    margin-top: 3%;
+}
+
+
+/*Campo descripcion*/
+.description {
+    display: flex;
+    border: solid 1px #fc3ea0FF;
+    flex-direction: column;
+    background-color: #252526FF;
+    padding: 3%;
+    gap: 5px;
+    border-radius: 20px;
+    margin: 4%;
+}
+
+.descriptionCampo {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    background-color: rgba(59, 59, 70, 0.527);
+    border: solid 3px #fc3ea0FF;
+    border-radius: 10px;
+}
+
+.contador {
+    padding-left: 87%;
+}
+
+.contador p {
+    color: #6d6969FF;
+    font-size: 80%;
+}
+
+textarea {
+    height: 80px;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    resize: none;
+}
+
+input,
+textarea {
+    outline: none;
+    padding-left: 3%;
+    color: aliceblue;
+}
+
+h4 {
+    color: #fc3ea0FF;
+}
+
+.textDescription p {
+    margin: 3%;
+    font-size: 80%;
+}
+
+
+
+
+/* Redes sociales*/
+.contenedorRedesSociales {
+    margin: 4%;
+    display: flex;
+    flex-direction: column;
+    padding: 3%;
+    background-color: #252526FF;
+    border-radius: 20px;
+    border: solid 1px #fc3ea0FF;
+    gap: 5px;
+}
+
+.tituloRedes {
+    display: flex;
+    width: 50%;
+    gap: 10px;
+    padding-left: 3%;
+}
+
+.tituloRedes img {
+    width: 11%;
+}
+
+.redesSociales {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    justify-content: space-evenly;
+}
+
+.iconRedes {
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    justify-content: space-evenly;
+}
+
+.iconRedes img {
+    width: 80%;
+}
+
+.nombreRedes {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 83px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+form input {
+    border-radius: 8px;
+    height: 30px;
+    width: 100%;
+    background-color: rgba(59, 59, 70, 0.527);
+    border: solid 1px white;
+    margin-top: 3%;
+    color: aliceblue;
+}
+
+
+/*Subir fotos*/
+input[type="file"] {
+    display: none;
+}
+
+.contImageCard button {
+    width: 100%;
+    margin-top: 5%;
+}
+
+.contInputButton {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+}
+
+.contCard {
+    display: flex;
+    border: solid 1px #fc3ea0FF;
+    flex-direction: column;
+    background-color: #252526FF;
+    padding: 3%;
+    align-items: center;
+    border-radius: 20px;
+    margin: 4%;
+    gap: 10px;
+    justify-content: space-evenly;
+
+}
+
+.contImageCard {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    text-align: center;
+    gap: 3px;
+}
+
+.imgTextCard {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    
+}
+.imgTextCard p{
+    width: 90px;
+    justify-content: center;
+}
+
+.imgCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+.img {
+    width: 80px;
+    height: 90px;
+    aspect-ratio: 9/16;
+    border: solid 2px #fc3ea0FF;
+    border-radius: 5px;
+}
+
+.buttonBorrarImg {
+    display: flex;
+    width: 80%; 
+}
+
+/*Botones de guardado y cerrar secion*/
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 3%;
+}
+
+#buttonSave {
+    background-color: #fc3ea0FF;
+    color: aliceblue;
+}
+
+#buttonClose {
+    background-color: transparent;
+    border: none;
+}
