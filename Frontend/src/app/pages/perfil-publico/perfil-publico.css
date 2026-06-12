@@ -114,12 +114,7 @@
     font-weight: 600;
     color: #ffff;  /*ver al finalllllllllllllllllllllllll*/
  }
- .ver-todos{
-    margin-left: auto;
-    font-size: 12px;
-    color: #FC3EA0;
-    text-decoration: none;
- }
+ 
  .card-body{
     font-size: 13px;
     color: #b3b3b3;
@@ -130,7 +125,11 @@
 
 
 
-
+.section-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
 
 
  .artistas-grid{
