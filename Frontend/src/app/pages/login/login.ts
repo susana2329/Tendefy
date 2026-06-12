@@ -12,10 +12,6 @@ export class LoginComponent {
         loginConSpotify(){
             this.router.navigate(['/home']);
         }
-        loginConGoogle(){
-            this.router.navigate(['/home'])
-        }
-
-    
+        
 
 }

@@ -11,8 +11,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
   padding: 60px 30px;
+  justify-content: center;
 }
 
 .login-titulo h1{
@@ -144,30 +145,7 @@ animation-delay: 1s;
 .btn-spotify:hover {
   background-color: #e0358e;
 }
-.login-separador {
-  font-size: 12px;
-  color: #6e6e6e;
-}
-.btn-google {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background-color: transparent;
-  color: white;
-  border: 1.5px solid white;
-  border-radius: 30px;
-  padding: 14px 30px;
-  font-size: 15px;
-  font-weight: 600;
-  font-family: 'Outfit', sans-serif;
-  cursor: pointer;
-  width: 100%;
-}
-.btn-google:hover {
-  background-color: rgba(255, 255, 255, 0.05);
-}
- 
+
 .btn-icon {
   width: 20px;
   height: 20px;
