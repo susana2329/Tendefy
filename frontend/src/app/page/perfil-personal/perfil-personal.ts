@@ -57,7 +57,7 @@ this.canciones = [
   { ranking: 1, titulo: 'Mi Diosa', artista: 'CA7RIEL & Paco Amoroso', coverUrl: 'assets/imagenes/midiosa.jpg' },
   { ranking: 2, titulo: 'Amor Completo', artista: 'Mon Laferte', coverUrl: 'assets/imagenes/amorcompleto.jpg' },
   { ranking: 3, titulo: 'Aint Shit', artista: 'Doja Cat', coverUrl: 'assets/imagenes/aintshit.jpg' },
-  { ranking: 2, titulo: 'Amor Completo', artista: 'Mon Laferte', coverUrl: 'assets/imagenes/amorcompleto.jpg' },
+  { ranking: 2, titulo: 'Importor', artista: 'CA7RIEL & Paco Amoroso', coverUrl: 'assets/imagenes/impostor.jpg' },
   { ranking: 3, titulo: 'telepatia', artista: 'Kali Uchis', coverUrl: 'assets/imagenes/kaliUchis.jpg' }
 ];
 
