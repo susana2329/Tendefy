@@ -10,8 +10,8 @@ import { Component } from '@angular/core';
 export class EditProfile {
   descripccion: string = " "
   contador: number = 0
-  fotos: File[] = []
   error: boolean = false
+  fotos: File[] = [] 
   usuario = {
     nombre: " ",
     edad: 0,
@@ -20,12 +20,33 @@ export class EditProfile {
       twitter: " ",
       instagram: " "
     },
-    arrayDeFotos: [],
-    fotoPerfil: "mma.jpg"
+    fotoPerfil: {
+      name:" "
+    },
   }
+
+abrirInputProfile(){
+  const inputFile = document.getElementById("inputProfile") as HTMLInputElement
+  inputFile?.click()
+}
+selecFotoProfile(){ 
+  const file = (document.getElementById("inputProfile") as HTMLInputElement).files
+  if(!file){
+    console.log("No selecciono ninguna foto")
+  }
+  else{ 
+    this.usuario.fotoPerfil = file[0]
+    console.log(this.usuario.fotoPerfil)
+    
+  }
+}
+
+
+
   elementoDescripcion() {
     this.descripccion = (document.getElementById("miTexto") as HTMLTextAreaElement).value
-    console.log(this.descripccion)
+    this.usuario.descripcion= this.descripccion
+    console.log(this.usuario.descripcion)
     if (this.descripccion) {
       this.contador = this.descripccion.length
     }
@@ -43,11 +64,11 @@ export class EditProfile {
       for (let i = 0; i < eventimg.length; i++) {
         if (this.fotos.length < 5) {
           this.fotos.push(eventimg[i])
+          console.log(eventimg[i])
         }
         else {
           console.log(eventimg[i])
           break
-
         }
       }
     }

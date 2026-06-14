@@ -1,9 +1,13 @@
 <div class="fotoButton">
     <div class="imagen">
-        <img src={{usuario.fotoPerfil}} alt="Patofachero">
+        <img src="../../../../public/{{usuario.fotoPerfil}}" alt="Patofachero">
     </div>
     <div class="buttonCambiarFoto">
-        <button type="file">
+
+        <form action="">
+            <input type="file" id="inputProfile" (input)="selecFotoProfile()">
+        </form>
+        <button type="file" (click)="abrirInputProfile()">
             <img src="https://design.penpot.app/assets/by-file-media-id/86bdcaa1-299a-806a-8008-20b567da9ce4"
                 alt="camarita">
             Cambiar fotos
@@ -48,7 +52,7 @@
             <p>Twitter</p>
         </div>
         <div class="inputRedes">
-            <form action="">
+            <form action="" class="formRedes">
                 <input type="text" placeholder="@ejemplo">
                 <input type="text" placeholder="@ejemplo">
             </form>
@@ -59,7 +63,9 @@
 <div class="contCard">
     <h4>Seleccione sus fotos (maximo 5 fotos) </h4>
     <div class="contInputButton" display="none">
-        <input type="file" id="inputFileimg" (input)="imagen()" multiple>
+        <form action="">
+            <input type="file" id="inputFileimg" (input)="imagen()" multiple>
+        </form>
         <button (click)="buttoninputfile()">
             Seleccione sus fotos
         </button>

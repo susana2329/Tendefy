@@ -157,13 +157,13 @@ h4 {
     height: 83px;
 }
 
-form {
+.formRedes {
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
 
-form input {
+.formRedes input {
     border-radius: 8px;
     height: 30px;
     width: 100%;
@@ -178,17 +178,12 @@ form input {
 input[type="file"] {
     display: none;
 }
-
-.buttonBorrarImg button {
-    width: 100%;
-    margin-top: 5%;
-}
-
 .contInputButton {
     display: flex;
     justify-content: center;
     width: 70%;
 }
+
 
 .contCard {
     display: flex;
@@ -246,6 +241,11 @@ input[type="file"] {
     display: flex;
     width: 80%; 
 }
+.buttonBorrarImg button {
+    width: 100%;
+    margin-top: 5%;
+}
+
 
 /*Botones de guardado y cerrar secion*/
 .buttons {
