@@ -1,6 +1,6 @@
 <div class="fotoButton">
     <div class="imagen">
-        <img src={{usuario.foto}} alt="Patofachero">
+        <img src={{usuario.fotoPerfil}} alt="Patofachero">
     </div>
     <div class="buttonCambiarFoto">
         <button type="file">
@@ -21,7 +21,7 @@
     <div class="descriptionCampo">
         <div class="campoText">
             <textarea id="miTexto" style="white-space: pre-wrap;" maxlength="100" placeholder="Pon tus gustos"
-                (input)=ola($event)></textarea>
+                (input)=elementoDescripcion()></textarea>
         </div>
         <div class="contador">
             <p>{{contador}}/100</p>
@@ -59,7 +59,7 @@
 <div class="contCard">
     <h4>Seleccione sus fotos (maximo 5 fotos) </h4>
     <div class="contInputButton" display="none">
-        <input type="file" id="inputFileimg" (input)="imagen($event)" multiple>
+        <input type="file" id="inputFileimg" (input)="imagen()" multiple>
         <button (click)="buttoninputfile()">
             Seleccione sus fotos
         </button>
@@ -80,11 +80,16 @@
         </div>
         }
     </div>
+    <div>
+        @if(error == true) {
+        <p>Solo se puede seleccionar 5 fotos</p>
+        }
+
+    </div>
 </div>
 
 
 <div class="buttons">
-
     <button id="buttonSave">
         Guardar cambios
     </button>

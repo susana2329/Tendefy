@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { error } from 'node:console';
-import { ObjectEncodingOptions } from 'node:fs';
+
 
 @Component({
   selector: 'app-edit-profile',
@@ -9,34 +8,48 @@ import { ObjectEncodingOptions } from 'node:fs';
   styleUrl: './edit-profile.css',
 })
 export class EditProfile {
-  valor: string = " "
+  descripccion: string = " "
   contador: number = 0
   fotos: File[] = []
   error: boolean = false
-
-  ola(event: Event): void {
-    const valor = (event.target as HTMLInputElement).value
-    console.log(valor)
-    if (valor) {
-      this.contador = valor.length
+  usuario = {
+    nombre: " ",
+    edad: 0,
+    descripcion: " ",
+    redesSociales: {
+      twitter: " ",
+      instagram: " "
+    },
+    arrayDeFotos: [],
+    fotoPerfil: "mma.jpg"
+  }
+  elementoDescripcion() {
+    this.descripccion = (document.getElementById("miTexto") as HTMLTextAreaElement).value
+    console.log(this.descripccion)
+    if (this.descripccion) {
+      this.contador = this.descripccion.length
     }
-    if (valor == "") {
+    else {
       this.contador = 0
     }
   }
 
-  imagen(event: Event): void {
-    const eventimg = (event.target as HTMLInputElement).files
-
-    if (eventimg == null || eventimg == undefined) {
+  imagen() {
+    const eventimg = (document.getElementById("inputFileimg") as HTMLInputElement).files
+    if (!eventimg) {
       console.log("toca para alla")
     }
     else {
       for (let i = 0; i < eventimg.length; i++) {
+        if (this.fotos.length < 5) {
+          this.fotos.push(eventimg[i])
+        }
+        else {
+          console.log(eventimg[i])
+          break
 
-        this.fotos.push(eventimg[i])
+        }
       }
-
     }
   }
 
@@ -50,17 +63,8 @@ export class EditProfile {
   borrarImagen(foto: File) {
     for (let i = 0; i < this.fotos.length; i++) {
       if (foto == this.fotos[i]) {
-        console.log(this.fotos.splice(i, 1))
+        this.fotos.splice(i, 1)
       }
     }
   }
-  usuario = {
-    nombre: "tobias",
-    edad: 21,
-    descripcion: "Hola mundo",
-    foto: "mma.jpg",
-    fotos: [" "]
-
-  }
-
 }
