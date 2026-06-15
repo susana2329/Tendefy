@@ -25,7 +25,7 @@ body {
 
     aspect-ratio: 9 / 16;
     border: solid #FC3EA0;
-    border-radius: 10px;
+    border-radius: 16px;;
     margin: 0 auto;
 
 
@@ -63,7 +63,7 @@ body {
     object-fit: cover;
     user-select: none;
     -webkit-user-select: none;
-    border-radius: 10px;
+    border-radius: 16px;
 }
 
 .fade {
@@ -126,8 +126,9 @@ body {
 
 .logo {
     display: flex;
+    position: relative;
     flex-direction: column;
-
+    top: 40px;
     justify-content: center;
     align-items: center;
     margin-bottom: 70px;

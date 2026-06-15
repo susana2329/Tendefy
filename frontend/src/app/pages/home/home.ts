@@ -28,12 +28,12 @@ import { ChangeDetectorRef } from '@angular/core';
 @ViewChild(MusicPopup)
 musicPopup!: MusicPopup;
 
-    @HostListener('window:mousemove',['$event'])
-    onMouseMove(event: MouseEvent){
+@HostListener('window:mousemove',['$event'])
+onMouseMove(event: MouseEvent){
       this.moveCard(event)
     }
     
-    @HostListener('window:mouseup')
+@HostListener('window:mouseup')
 onMouseUp(){
   this.endDrag();
 }
