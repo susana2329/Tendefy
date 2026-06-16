@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { EditProfile } from './pages/edit-profile/edit-profile';
 import { Home } from './pages/home/home';
 import { LoginComponent } from './pages/login/login';
 import { MainLayout } from './layouts/main-layout/main-layout';
@@ -34,3 +35,9 @@ export const routes: Routes = [
     component: PerfilPublicoComponent
   }
 ];
+export const routes: Routes = [
+
+    {
+        path: "edit", 
+        component:EditProfile
+    }

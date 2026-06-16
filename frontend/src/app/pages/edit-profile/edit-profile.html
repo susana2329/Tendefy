@@ -1,0 +1,106 @@
+<div class="fotoButton">
+    <div class="imagen">
+        <img src="../../../../public/{{usuario.fotoPerfil}}" alt="Patofachero">
+    </div>
+    <div class="buttonCambiarFoto">
+
+        <form action="">
+            <input type="file" id="inputProfile" (input)="selecFotoProfile()">
+        </form>
+        <button type="file" (click)="abrirInputProfile()">
+            <img src="https://design.penpot.app/assets/by-file-media-id/86bdcaa1-299a-806a-8008-20b567da9ce4"
+                alt="camarita">
+            Cambiar fotos
+        </button>
+    </div>
+</div>
+
+<div class="description">
+    <div class="textDescription">
+        <h4>Descripcion</h4>
+        <p>
+            Contanos sobre vos y tus gustos musicales
+        </p>
+    </div>
+    <div class="descriptionCampo">
+        <div class="campoText">
+            <textarea id="miTexto" style="white-space: pre-wrap;" maxlength="100" placeholder="Pon tus gustos"
+                (input)=elementoDescripcion()></textarea>
+        </div>
+        <div class="contador">
+            <p>{{contador}}/100</p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="contenedorRedesSociales">
+    <div class="tituloRedes">
+        <img src="enlace.png" alt="enlace">
+        <h4>
+            Redes sociales
+        </h4>
+    </div>
+    <div class="redesSociales">
+        <div class="iconRedes">
+            <img src="instagram.png" alt="iconInstagram">
+            <img src="tw.png" alt="iconTw">
+        </div>
+        <div class="nombreRedes">
+            <p>Instagram</p>
+            <p>Twitter</p>
+        </div>
+        <div class="inputRedes">
+            <form action="" class="formRedes">
+                <input type="text" placeholder="@ejemplo">
+                <input type="text" placeholder="@ejemplo">
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="contCard">
+    <h4>Seleccione sus fotos (maximo 5 fotos) </h4>
+    <div class="contInputButton" display="none">
+        <form action="">
+            <input type="file" id="inputFileimg" (input)="imagen()" multiple>
+        </form>
+        <button (click)="buttoninputfile()">
+            Seleccione sus fotos
+        </button>
+    </div>
+    <div class="contImageCard">
+        @for(foto of fotos; track foto ) {
+
+        <div class="imgTextCard">
+            <div class="imgCard">
+                <img src="{{foto.name}}" class="img" alt="foto">
+            </div>
+            <p>{{foto.name}}</p>
+            <div class="buttonBorrarImg">
+                <button (click)="borrarImagen(foto)">
+                    Eliminar
+                </button>
+            </div>
+        </div>
+        }
+    </div>
+    <div>
+        @if(error == true) {
+        <p>Solo se puede seleccionar 5 fotos</p>
+        }
+
+    </div>
+</div>
+
+
+<div class="buttons">
+    <button id="buttonSave">
+        Guardar cambios
+    </button>
+
+    <button id="buttonClose">
+        Cerrar sesion
+    </button>
+</div>
