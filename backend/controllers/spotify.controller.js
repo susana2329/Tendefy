@@ -9,12 +9,26 @@ const login = (req,res) =>{
 }
 
 
-const callback = (req,res) =>{
+const callback = async (req,res) =>{
 
-    const code = req.query
+  try {
+      const code = req.query.code
 
-    console.log("code",code)
-    res.send("spotify esta de puta madre")
+    const tokenData = await spotifyService.getAccessToken(code)
+
+   const profile =
+    await spotifyService.getProfile(
+        tokenData.access_token
+    )
+
+res.json(profile)
+
+  } catch (err) {
+
+    console.error(err)
+    res.status(500).json(err)
+    
+  }
 }
 
 
