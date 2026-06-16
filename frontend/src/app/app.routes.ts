@@ -6,11 +6,6 @@ import { MainLayout } from './layouts/main-layout/main-layout';
 import { PerfilPersonalComponent } from './page/perfil-personal/perfil-personal';
 import { PerfilPublicoComponent } from './pages/perfil-publico/perfil-publico';
 
-export const routes: Routes = [{
-     path: 'home',
-    component: Home   
-}
-];
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -19,25 +14,24 @@ export const routes: Routes = [
     component: MainLayout,
     children: [
       // rutas de las otra page
+      {
+        path: 'home',
+        component: Home
+      },
+      {
+        path: "edit",
+        component: EditProfile
+      },
+      {
+        path: 'perfil-publico',
+        component: PerfilPublicoComponent
+      },
+      {
+        path: 'perfil-personal',
+        component: PerfilPersonalComponent
+
+      }
     ]
   },
   { path: '**', redirectTo: 'login' }
 ];
-
-export const routes: Routes = [
-  {
-    path: 'perfil-personal',
-    component: PerfilPersonalComponent
-
-export const routes: Routes = [
-    {
-    path: 'perfil-publico',
-    component: PerfilPublicoComponent
-  }
-];
-export const routes: Routes = [
-
-    {
-        path: "edit", 
-        component:EditProfile
-    }

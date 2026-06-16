@@ -1,6 +1,6 @@
 <div class="fotoButton">
     <div class="imagen">
-        <img src="../../../../public/{{usuario.fotoPerfil}}" alt="Patofachero">
+        <img src="{{usuario.fotoPerfil.name}}" alt="Patofachero">
     </div>
     <div class="buttonCambiarFoto">
 
@@ -87,10 +87,6 @@
         }
     </div>
     <div>
-        @if(error == true) {
-        <p>Solo se puede seleccionar 5 fotos</p>
-        }
-
     </div>
 </div>
 
