@@ -1,8 +1,15 @@
 import { Routes } from '@angular/router';
+import { Home } from './pages/home/home';
 import { LoginComponent } from './pages/login/login';
 import { MainLayout } from './layouts/main-layout/main-layout';
 import { PerfilPersonalComponent } from './page/perfil-personal/perfil-personal';
 import { PerfilPublicoComponent } from './pages/perfil-publico/perfil-publico';
+
+export const routes: Routes = [{
+     path: 'home',
+    component: Home   
+}
+];
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
