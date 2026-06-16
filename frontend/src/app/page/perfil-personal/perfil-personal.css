@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.perfil-contenido {
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: 'Outfit', sans-serif;
+  display: flex; 
+  flex-direction: column;
+  gap: 30px;
+}
+
+.tarjeta-header {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.btn-editar{
+ background-color:#A5DC5D  ;
+  color: #272525;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;         
+  cursor: pointer;
+  display: flex;
+}
+
+.perfil-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  padding: 10px 0;
+  margin: 15px 10px 0 10px;
+}
+
+.foto-perfil {
+  width: 156px;
+  height: 156px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #FC3EA0;
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+}
+
+.info-contenedor {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bio {
+  color: #918989;
+  font-size: 0.85rem;
+}
+
+.tarjeta-musica {
+  background-color: #221c1f;
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid #FC3EA0;
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+}
+
+.lista-artistas {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style: none;
+
+}
+
+.artista-burbuja {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;    
+  gap: 10px;              
+}
+
+.foto-artista {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%; 
+  border: 1px solid #FC3EA0;
+  object-fit: cover;
+}
+
+.ranking-texto {
+  font-size: 0.75rem;
+  color: #ffffff;
+}
+
+.lista-canciones {
+  list-style: none;
+}
+
+.cancion-renglon {
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+.cancion-renglon:last-child {
+  border-bottom: none; 
+}
+
+.cancion-numero {
+  color: #FC3EA0;
+  font-weight: bold;
+  width: 30px; 
+}
+
+.cover-mini {
+  width: 56px;
+  height: 56px;
+  border-radius: 4px;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.track-info {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.item-texto-titulo {
+  font-size: 0.9rem;
+}
+
+.item-texto-sub {
+  font-size: 0.75rem;
+  color: #b3b3b3;
+}
+
+.redes-grid {
+  display: flex;
+  flex-direction: row;         
+  justify-content: space-between; 
+  gap: 10px;            
+  margin-top: 15px;           
+}
+
+.red-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;     
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 20px;        
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;       
+  border: 1.5px solid transparent;               
+}
+ 
+.instagram {
+  background: linear-gradient(135deg, #833ab4, #e1306c, #fd1d1d);
+  color: white;
+}
+ 
+.spotify {
+  background-color: transparent;
+  color: #A5DC5D;
+  border-color: #A5DC5D;
+}
+ 
+.twitter {
+  background-color: transparent;
+  color: #FC3EA0;
+  border-color: #FC3EA0;
+}
+
