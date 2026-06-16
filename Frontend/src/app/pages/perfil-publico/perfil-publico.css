@@ -1,0 +1,294 @@
+ @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
+ .perfil-container {
+    font-family: 'Outfit', sans-serif;
+    background-color:#0E0B0B ;
+    color: white;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding-bottom: 70px ;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+ }
+ .perfil-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 5px solid rgba(252, 62, 160, 0.2); /*ver como queda cuando pongas la imagen de perfil*/
+ }
+ .header-title{
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+ }
+ .btn-back, .btn-menu{
+    background: none;
+    border: none;
+    color:#FC3EA0 ;
+    font-size: 20px;
+    cursor: pointer;
+
+ }
+
+
+/*perfil: foto avatar mas perfil*/
+
+
+
+ .perfil-hero{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+ }
+ .avatar-wrapper{
+    position: relative;
+    width:110px;
+    height: 110px;
+ }
+ .avatar-img{
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+
+ }
+
+ .avatar-ring{
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    border: 2px solid #FC3EA0;
+    box-shadow: 0 0 12px #FC3EA0;
+ }
+ .perfil-nombre{
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+ }
+
+
+
+ .compatibilidad-badge{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(165, 220, 93, 0.1);
+    border: 1px solid rgba(165, 220, 93, 0.4);
+    border-radius: 20px;
+    padding: 5px 14px;
+ }
+
+ .compat-text{
+    font-size: 13px;
+    font-weight: 600;
+    color: #A5DC5D;
+ }
+
+
+
+
+ .card{
+    margin: 0 14px;
+    background-color: #130f0f;
+    border: 1px solid #FC3EA0;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+ }
+ .card-title{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffff;  /*ver al finalllllllllllllllllllllllll*/
+ }
+ 
+ .card-body{
+    font-size: 13px;
+    color: #b3b3b3;
+    line-height: 1.5;
+    margin: 0;
+ }
+
+
+
+
+.section-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+
+ .artistas-grid{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 14px;
+    overflow-x: auto;
+ }
+ .artista-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 80px;
+ }
+ .artista-img-wrapper{
+    position: relative;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+ }
+ .artista-img{
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    overflow: hidden;
+ }
+ .artista-rank {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #A5DC5D;
+  color: #0E0B0B;
+  font-size: 10px;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.artista-nombre {
+  font-size: 11px;
+  color: #b3b3b3;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+.canciones-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+ 
+.cancion-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+ 
+.cancion-item:last-child {
+  border-bottom: none;
+}
+ 
+.cancion-rank {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  width: 16px;
+  text-align: center;
+}
+ 
+.cancion-cover {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+ 
+.cancion-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+ 
+.cancion-titulo {
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+}
+ 
+.cancion-artista {
+  font-size: 11px;
+  color: #6e6e6e;
+}
+
+
+
+
+
+
+
+.redes-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+ 
+.red-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+}
+ 
+.red-icon {
+  width: 15px;
+  height: 15px;
+  filter: brightness(0) invert(1);
+}
+ 
+.instagram {
+  background: linear-gradient(135deg, #833ab4, #e1306c, #fd1d1d);
+  color: white;
+}
+ 
+.spotify {
+  background-color: transparent;
+  color: #A5DC5D;
+  border-color: #A5DC5D;
+}
+ 
+.spotify .red-icon {
+  filter: none;
+}
+ 
+.twitter {
+  background-color: transparent;
+  color: #FC3EA0;
+  border-color: #FC3EA0;
+}
+ 
+.twitter .red-icon {
+  filter: none;
+}
