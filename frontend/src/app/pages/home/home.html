@@ -1,0 +1,108 @@
+<header class="logo">
+    <h1>
+        Tende<span class="logo-span">fy</span>
+    </h1>
+    <img class="logo-img" src="/logo.png" alt="logo">
+</header>
+@if(currentProfile < profiles.length){ 
+    <main class="profile-container">
+    <div class="card-wrapper">
+    <div class="card" [style.transform]="transformStyle()" (mousedown)="startDrag($event)" >
+        <div class="compatibility">
+            <img class="location" src="/music_note_2_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+            {{profiles[currentProfile].compatibility}}% afinidad
+        </div>
+
+        <div class="fade"></div>
+       <button class="pic-btn pic-prev"
+        (mousedown)="$event.stopPropagation()"
+        (click)="previusPic()">‹</button>
+
+<button class="pic-btn pic-next"
+        (mousedown)="$event.stopPropagation()"
+        (click)="nextPic()">›</button>
+
+
+        <div class="pic-indicator">
+
+
+
+            @for(pic of profiles[currentProfile].pics; track $index){
+
+                <div
+                    class="indicator" [class.active]="$index == currentPic">
+                </div>
+
+                }
+        </div> 
+
+
+
+        <img class="profile-image" draggable="false" [src]="profiles[currentProfile].pics[currentPic]" alt="user">
+
+
+
+
+                
+
+        <div class="profile-info">
+
+            <h2>
+                {{ profiles[currentProfile].name }}, {{ profiles[currentProfile].age }}
+            </h2>
+
+            <p>
+                <span class="material-symbols-outlined">
+                    <img src="/location_on_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt="location">
+                </span>
+
+                {{ profiles[currentProfile].location }}
+            </p>
+
+            <p>
+                {{ profiles[currentProfile].description }}
+            </p>
+
+            <div class="artists">
+
+                @for (artist of profiles[currentProfile].artists; track $index) {
+                <div class="artist">
+                    {{ artist }}
+                </div>
+                }
+
+
+                <app-music-popup [artist]="profiles[currentProfile].currentArtist"
+                    [track]="profiles[currentProfile].currentTrack" [cover]="profiles[currentProfile].currentCover">
+                </app-music-popup>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    </main>
+
+    <footer class="action-buttons">
+
+        <button (click)="dislike()" class="dislike-btn">
+            ✕
+        </button>
+
+        <button (click)="like()" class="like-btn">
+            ♥
+        </button>
+
+
+    </footer>
+    }
+    @else{
+    <div class="noMore">
+
+        <div>
+            <h1>Baja un cambio!</h1>
+            <h3>Ya no hay mas perfiles para matchear</h3>
+
+        </div>
+
+    </div>
+    }
