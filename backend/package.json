@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/susana2329/Tendefy#readme",
   "dependencies": {
-    "express": "^5.2.1"
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongodb": "^7.3.0",
+    "mongoose": "^9.7.0"
   }
 }
