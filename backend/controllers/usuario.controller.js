@@ -1,0 +1,1 @@
+const usuarioService = require('../services/usuario.service');
