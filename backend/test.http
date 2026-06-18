@@ -1,0 +1,38 @@
+PATCH http://127.0.0.1:3000/spotify/perfil/edit/6a3374de9caa377cc90eeac1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "miguel aguirre",
+  "edad": 27,
+  "ubicacion": "Córdoba",
+  "avatarUrl": "https://ejemplo.com/avatar-tomas.jpg",
+  "descripcion": "Fanático del jazz y la electrónica.",
+  "compatibilidad": 72,
+  "topArtistas": [
+    {
+      "nombre": "Daft Punk",
+      "imagenUrl": "https://ejemplo.com/daft-punk.jpg"
+    }
+  ],
+  "topCanciones": [
+    {
+      "titulo": "Instant Crush",
+      "artista": "Daft Punk",
+      "coverUrl": "https://ejemplo.com/instant-crush.jpg"
+    }
+  ],
+  "redes": {
+    "instagram": "tomasbeats",
+    "spotify": "https://open.spotify.com/user/tomasbeats",
+    "twitter": "@tomasbeats"
+  },
+  "fotos": [
+    {
+      "url": "https://ejemplo.com/foto1.jpg",
+      "publicId": "usuarios/tomas/foto1"
+    }
+  ]
+}
+
+#################
+GET http://127.0.0.1:3000/spotify/perfil/edit/6a3374de9caa377cc90eeac1 HTTP/1.1

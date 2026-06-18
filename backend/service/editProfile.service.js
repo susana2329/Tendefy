@@ -1,19 +1,21 @@
 const { editProfileUpdate } = require(`../repository/editProfile.repository`)
-
-
+const { getProfile } = require(`../repository/editProfile.repository`)
 
 exports.editProfileService = async (id, usuario) => {
     try {
-        if(!id){ 
-            console.log("Error no se puedo identificar al usuario en la base de datos")
-        }
-        else{ 
-            return result = await editProfileUpdate(id, usuairo)
-        }
-
+        return result = await editProfileUpdate(id, usuario)
     }
     catch (error) {
         console.log(`Hubo un error en los servicios: ${error}`)
     }
 
+}
+
+exports.getProfileService = async (id) => {
+    try {
+        const profile = await getProfile(id)
+        return profile
+    } catch (error) {
+        console.log(`Hubo un error en el service ${error}`)
+    }
 }

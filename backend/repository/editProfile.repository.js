@@ -1,22 +1,34 @@
-const usuarios = require(`./model/usuario.js`)
-const {getMongoDBConnection} = require(`../database/conexion`)
+const Usuarios = require(`./model/usuario.js`)
+const { getMongoDBConnection } = require(`../database/conexion`)
 
-getMongoDBConnection()
+getMongoDBConnection(); 
 
 
 
-exports.editProfileUpdate = async(id,usuario) =>  {
-    try{
-        const result = await usuarios.findByIdUpdate(id, usuario)
-        console.log(result)
-        if(!result){ 
-            console.log("Hubo un problema cuando se intento guardar las actualizaciones") 
-            return null
+    exports.editProfileUpdate = async (id, usuario) => {
+        try {
+            console.log(usuario)
+            console.log(id)
+            const result = await Usuarios.findByIdAndUpdate(id, usuario,  { new: true  })
+            if (!result) {
+                console.log("Hubo un problema cuando se intento guardar las actualizaciones")
+                return null
+            }
+            return result
+            console.log(JSON.stringify(result))
         }
-        return result
+        catch (error) {
+            console.log(`Ocurrio un error: ${error}`)
+
+        }
     }
-    catch(error) {
-        console.log(`Ocurrio un error: ${error}`)
-        
+
+exports.getProfile = async (id) => { 
+    try{
+        const result = await Usuarios.findById(id)
+        return [result]
+    }
+    catch(error){
+        console.log(`Hubo un error con la busqueda del usuario ${error}`)
     }
 }
