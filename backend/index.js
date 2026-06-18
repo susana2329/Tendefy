@@ -8,6 +8,7 @@ const { getMongoDBConnection } = require('./database/conexion');
 getMongoDBConnection();
 
 app.use('/auth',spotifyRouter)
+app.use('/',spotifyRouter)
 
 app.listen(3000, () => {
     console.log("Servidor levantado");
