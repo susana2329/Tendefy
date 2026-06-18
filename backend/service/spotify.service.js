@@ -40,8 +40,6 @@ const getAccessToken = async (code) => {
 }
 
 
-
-
 const getTopArtists = async (accessToken) =>{
     const artistas = []
     const response = await axios.get(

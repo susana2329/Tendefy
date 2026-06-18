@@ -15,9 +15,5 @@ router.get("/test", (req, res) => {
     res.send("ok");
 });
 
-console.log(
-    router.stack
-        .filter(r => r.route)
-        .map(r => r.route.path)
-)
+
 module.exports = router

@@ -1,3 +1,29 @@
+const users = require('../mocks/profiles.json')
+const userActual = require('../mocks/me.json')
+
+const getMatches = (userActual, usuarios) =>{
+    const matches = []
+    
+    for (let h = 0; h < usuarios.length; h++) {
+        
+        if(usuarios[h].name === userActual){
+            continue
+        }
+
+        const compatibilidad = calcularCompatibilidad(userActual.artists, usuarios[h].artists)
+
+        matches.push({
+            usuario:usuarios[h],
+            compatibility: compatibilidad
+        })
+    }
+        matches.sort(
+            (a,b) =>  b.compatibility - a.compatibility
+        )
+        return matches
+    }
+
+
 
 const calcularCompatibilidad = (vectorA,vectorB) =>{
     let score = 0
@@ -18,7 +44,6 @@ const calcularCompatibilidad = (vectorA,vectorB) =>{
     }
 
     const maximo = Math.min(vectorA.length, vectorB.length)
-    let afinidad
     let maximoTeorico = 0
     for(let k = 0; k < maximo; k++){
         maximoTeorico += Math.pow(n,k)
@@ -33,5 +58,11 @@ const calcularCompatibilidad = (vectorA,vectorB) =>{
      
 }
 
-console.log(calcularCompatibilidad(["A","B","X","D","E","F"],["A","B","X","Y"])
+
+console.log(
+    getMatches(userActual, users)
 )
+
+module.exports ={
+    getMatches,calcularCompatibilidad
+}
