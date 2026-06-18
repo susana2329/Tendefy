@@ -1,0 +1,24 @@
+### Crear usuario
+POST http://localhost:3000/api/usuarios HTTP/1.1
+Content-Type: application/json
+
+{
+  "nombre": "TOPURIA",
+  "edad": 28,
+  "ubicacion": "Buenos Aires",
+  "avatarUrl": "https://ejemplo.com/foto.jpg",
+  "descripcion": "Peleador de MMA",
+  "compatibilidad": 89,
+  "topArtistas": [
+    { "nombre": "Linkin Park", "imagenUrl": "link ejemplo" }
+  ],
+  "topCanciones": [
+    { "titulo": "Numb", "artista": "Linkin Park", "coverUrl": "link ejemplo" }
+  ],
+  "redes": {
+    "instagram": "https://instagram.com/topuria"
+  }
+}
+
+###
+GET http://localhost:3000/api/usuarios/perfil/6a3382aeef48e74d7152929c HTTP/1.1
