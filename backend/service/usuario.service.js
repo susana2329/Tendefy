@@ -10,8 +10,10 @@ exports.getUsuarioById = async (id) => {
         console.log("Error al getUsuarioById()", error);
     }
 };
-//prueba
+
+/*//prueba
 exports.registrarUsuario= async (datosUsuario) => {
     return await usuarioRepository.crearUsuario(datosUsuario);
     
 }
+*/

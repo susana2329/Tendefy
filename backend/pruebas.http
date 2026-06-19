@@ -22,3 +22,6 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/api/usuarios/perfil/6a3382aeef48e74d7152929c HTTP/1.1
+
+### Traer perfil Spotify
+GET http://localhost:3000/api/usuarios/perfil/6a3493ec2b1c6278d4e5905c/spotify HTTP/1.1

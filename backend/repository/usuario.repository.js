@@ -12,8 +12,9 @@ exports.findUsuarioById = async (id) => {
     }
 };
 
-// esto solo era para probar si andaba mi endpoint
+/*// prueba
 exports.crearUsuario = async (datosUsuario) => {
     const nuevoUsuario = new Usuarios(datosUsuario); 
     return await nuevoUsuario.save();
 }
+*/
