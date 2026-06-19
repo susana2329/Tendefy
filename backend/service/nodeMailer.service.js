@@ -20,11 +20,11 @@ const sendMatchEmail = async (email, name, percent) => {
             replyTo: "tojoaca10@gmail.com",
             subject: "Tenes un nuevo Match en Tendefy!",
             text: "Tenes un Match!",
-            attachments:[{
+           /* attachments:[{
                 filename: 'logo.png',
                 path: './public/logo.png',
                 cid: 'tendefylogo'
-        }],
+        }],*/
             html: `<div style="background:#0E0B0B;color:white;padding:40px;text-align:center;font-family:Outfit,sans-serif;">
 
     <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:25px;">

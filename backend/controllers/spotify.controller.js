@@ -2,72 +2,85 @@ const spotifyService = require('../service/spotify.service')
 
 let accessToken = null
 
-const login = (req,res) =>{
+const login = (req, res) => {
     const url = spotifyService.getAuthorizationUrl()
-        console.log(url)
+    console.log(url)
 
     res.redirect(url)
 
 }
 
 
-const callback = async (req,res) =>{
+const callback = async (req, res) => {
+      console.log('HOLA mi NOMBRE ES CALLBACK')
+    try {
+        console.log('soy un try')
+        const code = req.query.code
 
-  try {
-      const code = req.query.code
+        const tokenData = await spotifyService.getAccessToken(code)
 
-    const tokenData = await spotifyService.getAccessToken(code)
+        accessToken = tokenData.access_token
 
-    accessToken = tokenData.access_token
+        const spotifyUser = await spotifyService.getCurrentUser(accessToken)
+        const topTracks = await spotifyService.getTopTracks(accessToken)
+        const topArtists = await spotifyService.getTopArtists(accessToken)
 
-
-res.json({
-    message: 'login exitoso'
-})
-
-
-
-  } catch(err){
-    res.status(500).json(err.response?.data)
-}
-}
+        const usuario = await spotifyService.getOrCreateUser(spotifyUser, topArtists, topTracks)
 
 
-const getTopArtists = async (req, res) =>{
-    
-   try {
+        console.log('spotify ok')
 
-     const artists = await spotifyService.getTopArtists(accessToken)
+        console.log(topArtists.length)
 
-    res.json(artists)
-    
-   } catch (err) {
-    
-    console.error(err)
+        console.log(topTracks.length)
 
-    res.status(500).json(err)
+        console.log(usuario)
+        res.json({ usuario })
 
+    } catch (err) {
 
-   }
+            console.log('ENTRO AL CATCH')
+            console.error(err)
+        res.status(500).json(err)
+    }
 }
 
 
-const getTopTracks = async (req, res) =>{
+const getTopArtists = async (req, res) => {
 
     try {
-        
+
+        const artists = await spotifyService.getTopArtists(accessToken)
+
+        res.json(artists)
+
+    } catch (err) {
+
+        console.error(err)
+
+        res.status(500).json(err)
+
+
+    }
+}
+
+
+const getTopTracks = async (req, res) => {
+
+    try {
+
         const tracks = await spotifyService.getTopTracks(accessToken)
 
         res.json(tracks)
 
     } catch (err) {
-        
+
         console.error(err)
         res.status(500).json(err)
     }
 }
 
-const getCurrentUser = async (req, res) =>{
+const getCurrentUser = async (req, res) => {
     try {
         const user = await spotifyService.getCurrentUser(accessToken)
         res.json(user)
@@ -78,7 +91,7 @@ const getCurrentUser = async (req, res) =>{
 }
 
 
-const getCurrentTrack = async (req,res) => {
+const getCurrentTrack = async (req, res) => {
 
     try {
         const currentTrack = await spotifyService.getCurrentTrack(accessToken)
@@ -87,10 +100,10 @@ const getCurrentTrack = async (req,res) => {
         console.error(err)
         res.status(500).json(err)
     }
-    
+
 }
 
 
 
 
-module.exports = { login, callback, getTopArtists, getTopTracks, getCurrentUser, getCurrentTrack}
+module.exports = { login, callback, getTopArtists, getTopTracks, getCurrentUser, getCurrentTrack }

@@ -10,6 +10,8 @@ router.get("/spotify/tracks", spotifyController.getTopTracks)
 router.get("/spotify/profile",spotifyController.getCurrentUser)
 router.get("/spotify/currentTrack",spotifyController.getCurrentTrack)
 
+
+
 router.get("/test", (req, res) => {
     console.log("ENTRO A TEST");
     res.send("ok");

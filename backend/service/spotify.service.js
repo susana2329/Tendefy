@@ -1,4 +1,5 @@
 const axios = require('axios')
+const usuarioRepository = require('../repository/postUser.repository')
 const getAuthorizationUrl = () =>{
     const clientId = process.env.SPOTIFY_CLIENT_ID
     const scopes = [
@@ -50,9 +51,10 @@ const getTopArtists = async (accessToken) =>{
     )
 
      for (let i = 0; i < response.data.items.length; i++) {
-        artistas.push(
-            response.data.items[i].name
-        )
+        artistas.push({
+    nombre: response.data.items[i].name,
+    imagenUrl: response.data.items[i].images[0]?.url
+})
 
         
     }
@@ -72,20 +74,22 @@ const getTopTracks = async (accessToken) =>{
 
 
     for (let i = 0; i < response.data.items.length; i++) {
-        tracks.push(
-            response.data.items[i].name
-        )
-
+        tracks.push({
+    titulo: response.data.items[i].name,
+    artista: response.data.items[i].artists[0].name,
+    coverUrl: response.data.items[i].album.images[0]?.url
+})
+    console.log(response.data.items[i])
     
     }
+    
     return tracks
 
 }
 
 const getCurrentUser = async (accessToken) =>{
 
-    const response = await axios.get(
-        "https://api.spotify.com/v1/me",
+    const response = await axios.get("https://api.spotify.com/v1/me",
         {
             headers : {
                 Authorization: `Bearer ${accessToken}`
@@ -97,7 +101,7 @@ const getCurrentUser = async (accessToken) =>{
         display_name: response.data.display_name,
         email: response.data.email,
         country: response.data.country,
-        url:respose.data.external_urls
+        url:response.data.external_urls
     }
 }
 
@@ -112,10 +116,30 @@ const getCurrentTrack = async (accessToken) =>{
     )
         return {
         track: response.data.item.name,
-        artist: response.data.item.artists[0].name,
-        album: response.data.item.album.name,
-        image: response.data.item.album.images[0].url
+        
     }
 }
 
-module.exports = { getAuthorizationUrl,getAccessToken,getTopArtists, getCurrentUser, getTopTracks, getCurrentTrack}
+
+const getOrCreateUser = async (spotifyUser,topArtists,topTracks) => {
+
+    await usuarioRepository.findBySpotifyId(spotifyUser.id)
+    
+
+    let usuario = await usuarioRepository.findBySpotifyId(spotifyUser.id)
+    console.log(usuario)
+
+    if (!usuario) {
+
+        usuario = await usuarioRepository.createUser(spotifyUser,topArtists,topTracks)
+
+    }   
+    else
+        {
+            usuario = await usuarioRepository.updateSpotifyData( spotifyUser,topArtists, topTracks)
+    }
+
+    return usuario
+}
+
+module.exports = { getAuthorizationUrl,getAccessToken,getTopArtists, getCurrentUser, getTopTracks, getCurrentTrack, getOrCreateUser}

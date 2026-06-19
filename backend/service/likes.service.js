@@ -1,40 +1,65 @@
-const likes = require('../mocks/likes.json')
-const matches = require('../mocks/matches.json')
-const {sendMatchEmail} = require('./nodeMailer.service')
+const Match = require('../repository/model/matches.js')
+const Like = require('../repository/model/likes.js')
+const User = require('../repository/model/usuario.js')
+const { sendMatchEmail } = require('./nodeMailer.service')
 
 
 const like = async (fromUser, toUser) =>{
-console.log("LIKES ACTUALES")
-console.log(likes)
-    for (let i = 0; i < likes.length; i++) {
-        
-        if(likes[i].fromUser === toUser && likes[i].toUser === fromUser){
 
-            matches.push({
-                userA:fromUser,
-                userB:toUser
+console.log("LIKES ACTUALeES")
+    
+    const matchExistente = await Match.findOne({
+        $or: [
+            {
+                userA: fromUser,
+                userB: toUser
+            },
+            {
+                userA: toUser,
+                userB: fromUser
+            }
+        ]
+    })
+
+    if(matchExistente){
+        console.log("YA EXITE")
+        return true
+    }
+        
+    const likeInverso = await Like.findOne({
+        fromUser: toUser,
+        toUser: fromUser
+    })
+
+    const usuarioMatch = await User.findById(toUser)
+
+
+
+    if(likeInverso){
+        const usuarioA = await User.findById(fromUser)
+        const usuarioB = await User.findById(toUser)
+        
+        await Match.create({
+            userA: fromUser,
+            userB: toUser
             })
 
-            
-            await sendMatchEmail(
-    "tojoaca10@gmail.com",
-    "Tobias",
-    82
-)
-            return true
-
-            
-        }
+        await sendMatchEmail(usuarioMatch.email,usuarioMatch.nombre, 90)
+        return true
     }
 
-    likes.push({
+    await Like.create({
         fromUser,
         toUser
     })
+    console.log("DESPUES DEL PUSj")
 
-    console.log("DESPUES DEL PUSJ")
-    console.log(likes)
+
     return false
+
+
 }
+
+
 
 module.exports = { like }
