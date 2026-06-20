@@ -2,14 +2,9 @@ const Usuarios = require(`./model/usuario.js`)
 const { getMongoDBConnection } = require(`../database/conexion`)
 
 getMongoDBConnection(); 
-
-
-
     exports.editProfileUpdate = async (id, usuario) => {
         try {
-            console.log(usuario)
-            console.log(id)
-            const result = await Usuarios.findByIdAndUpdate(id, usuario,  { new: true  })
+            const result = await Usuarios.findByIdAndUpdate(id, usuario,  { returnDocument:`after`  })
             if (!result) {
                 console.log("Hubo un problema cuando se intento guardar las actualizaciones")
                 return null

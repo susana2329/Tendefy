@@ -1,38 +1,117 @@
-PATCH http://127.0.0.1:3000/spotify/perfil/edit/6a3374de9caa377cc90eeac1 HTTP/1.1
+PATCH http://127.0.0.1:3000/spotify/perfil/edit/6a35abb75c48d1d075d0f785 HTTP/1.1
 Content-Type: application/json
 
 {
-  "nombre": "miguel aguirre",
-  "edad": 27,
+   "nombre": "tobias",
+  "edad": 21,
   "ubicacion": "Córdoba",
-  "avatarUrl": "https://ejemplo.com/avatar-tomas.jpg",
-  "descripcion": "Fanático del jazz y la electrónica.",
-  "compatibilidad": 72,
+  "avatarUrl": {
+    "name": "kanyewest.jpg",
+    "size": 93946,
+    "type": "image/jpeg",
+    "lastModified": 1747934495630
+  },
+  "descripcion": "Fanática del indie, los recitales y descubrir artistas nuevos.",
+  "compatibilidad": 87,
   "topArtistas": [
-    {
-      "nombre": "Daft Punk",
-      "imagenUrl": "https://ejemplo.com/daft-punk.jpg"
-    }
+    { "nombre": "Lana Del Rey", "imagenUrl": "" },
+    { "nombre": "The Neighbourhood", "imagenUrl": "" },
+    { "nombre": "Cigarettes After Sex", "imagenUrl": "" },
+    { "nombre": "Clairo", "imagenUrl": "" },
+    { "nombre": "Phoebe Bridgers", "imagenUrl": "" },
+    { "nombre": "Mac DeMarco", "imagenUrl": "" },
+    { "nombre": "The 1975", "imagenUrl": "" },
+    { "nombre": "Beach House", "imagenUrl": "" },
+    { "nombre": "Men I Trust", "imagenUrl": "" },
+    { "nombre": "Mitski", "imagenUrl": "" },
+    { "nombre": "Girl in Red", "imagenUrl": "" },
+    { "nombre": "Wallows", "imagenUrl": "" },
+    { "nombre": "Joji", "imagenUrl": "" },
+    { "nombre": "Frank Ocean", "imagenUrl": "" },
+    { "nombre": "Rex Orange County", "imagenUrl": "" },
+    { "nombre": "Steve Lacy", "imagenUrl": "" },
+    { "nombre": "TV Girl", "imagenUrl": "" },
+    { "nombre": "Foster The People", "imagenUrl": "" },
+    { "nombre": "Empire Of The Sun", "imagenUrl": "" },
+    { "nombre": "Kali Uchis", "imagenUrl": "" },
+    { "nombre": "Aurora", "imagenUrl": "" },
+    { "nombre": "Billie Eilish", "imagenUrl": "" },
+    { "nombre": "SZA", "imagenUrl": "" },
+    { "nombre": "Dua Lipa", "imagenUrl": "" },
+    { "nombre": "Olivia Rodrigo", "imagenUrl": "" },
+    { "nombre": "Taylor Swift", "imagenUrl": "" },
+    { "nombre": "ROSALÍA", "imagenUrl": "" },
+    { "nombre": "Tame Impala", "imagenUrl": "" },
+    { "nombre": "Arctic Monkeys", "imagenUrl": "" },
+    { "nombre": "The Strokes", "imagenUrl": "" },
+    { "nombre": "Paramore", "imagenUrl": "" },
+    { "nombre": "Muse", "imagenUrl": "" },
+    { "nombre": "Coldplay", "imagenUrl": "" },
+    { "nombre": "Radiohead", "imagenUrl": "" },
+    { "nombre": "Lorde", "imagenUrl": "" },
+    { "nombre": "Harry Styles", "imagenUrl": "" },
+    { "nombre": "FINNEAS", "imagenUrl": "" },
+    { "nombre": "Benson Boone", "imagenUrl": "" },
+    { "nombre": "Conan Gray", "imagenUrl": "" },
+    { "nombre": "Gracie Abrams", "imagenUrl": "" },
+    { "nombre": "Zoe Gotusso", "imagenUrl": "" },
+    { "nombre": "Bandalos Chinos", "imagenUrl": "" },
+    { "nombre": "El Mató a un Policía Motorizado", "imagenUrl": "" },
+    { "nombre": "Dillom", "imagenUrl": "" },
+    { "nombre": "Wos", "imagenUrl": "" },
+    { "nombre": "Trueno", "imagenUrl": "" },
+    { "nombre": "Duki", "imagenUrl": "" },
+    { "nombre": "Feid", "imagenUrl": "" },
+    { "nombre": "Bad Bunny", "imagenUrl": "" },
+    { "nombre": "Mora", "imagenUrl": "" }
   ],
   "topCanciones": [
     {
-      "titulo": "Instant Crush",
-      "artista": "Daft Punk",
-      "coverUrl": "https://ejemplo.com/instant-crush.jpg"
+      "titulo": "Apocalypse",
+      "artista": "Cigarettes After Sex",
+      "coverUrl": ""
+    },
+    {
+      "titulo": "Sweater Weather",
+      "artista": "The Neighbourhood",
+      "coverUrl": ""
+    },
+    {
+      "titulo": "West Coast",
+      "artista": "Lana Del Rey",
+      "coverUrl": ""
     }
   ],
   "redes": {
-    "instagram": "tomasbeats",
-    "spotify": "https://open.spotify.com/user/tomasbeats",
-    "twitter": "@tomasbeats"
+    "instagram": "sofi.music",
+    "spotify": "spotify.com/user/sofi_music",
+    "twitter": "sofimusic_"
   },
-  "fotos": [
-    {
-      "url": "https://ejemplo.com/foto1.jpg",
-      "publicId": "usuarios/tomas/foto1"
-    }
-  ]
+  "fotos": [{
+        "name": "kanyewest.jpg",
+    "size": 93946,
+    "type": "image/jpeg",
+    "lastModified": 1747934495630
+  }, {
+        "name": "tilinelcreador.jpg",
+    "size": 93946,
+    "type": "image/jpeg",
+    "lastModified": 1747934495630
+  }]
 }
 
 #################
 GET http://127.0.0.1:3000/spotify/perfil/edit/6a3374de9caa377cc90eeac1 HTTP/1.1
+################
+
+POST http://127.0.0.1:3000/cloudinary/post HTTP/1.1
+Content-Type: application/json
+
+  {
+    "lastModified": 1747934495630,
+    "name":"ciro.jpg",
+    "size":93946,
+    "type":"image/jpeg"
+  }
+#########################################
+DELETE http://127.0.0.1:3000/cloudinary/delete?idPublic=tendefy/fotos-cards/Patofachero_kzoyon HTTP/1.1

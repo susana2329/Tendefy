@@ -41,7 +41,9 @@ const usuariosSchema = mongoose.Schema(
             {
                 _id: false,
                 nombre: { type: String, required: true },
-                imagenUrl: { type: String, required: true }
+                imagenUrl: { type: String, required: true },
+                _id: false
+
             }
         ],
         topTracks: [
@@ -49,15 +51,22 @@ const usuariosSchema = mongoose.Schema(
                 _id: false,
                 titulo: { type: String, required: true },
                 artista: { type: String, required: true },
-                coverUrl: { type: String, required: true }
+                coverUrl: { type: String, required: true },
+                _id: false
             }
         ],
         redes: {
             instagram: { type: String },
             spotify: { type: String },
             twitter: { type: String }
+
+
         }
     }
 )
 
-module.exports = mongoose.model('Usuarios', usuariosSchema)
+
+const Usuarios = mongoose.model('Usuarios', usuariosSchema)
+
+module.exports = Usuarios
+
