@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { rejects } from 'node:assert';
+import { resolve } from 'node:path';
 
 
 @Component({
@@ -11,7 +13,7 @@ export class EditProfile {
   descripccion: string = " "
   contador: number = 0
   error: boolean = false
-  fotos: File[] = [] 
+  fotos: File[] = []
   usuario = {
     nombre: " ",
     edad: 0,
@@ -21,31 +23,29 @@ export class EditProfile {
       instagram: " "
     },
     fotoPerfil: {
-      name:" "
-    },
+     
+    }
   }
 
-abrirInputProfile(){
-  const inputFile = document.getElementById("inputProfile") as HTMLInputElement
-  inputFile?.click()
-}
-selecFotoProfile(){ 
-  const file = (document.getElementById("inputProfile") as HTMLInputElement).files
-  if(!file){
-    console.log("No selecciono ninguna foto")
+  abrirInputProfile() {
+    const inputFile = document.getElementById("inputProfile") as HTMLInputElement
+    inputFile?.click()
   }
-  else{ 
-    this.usuario.fotoPerfil = file[0]
-    console.log(this.usuario.fotoPerfil)
-    
+  selecFotoProfile() {
+    const file = (document.getElementById("inputProfile") as HTMLInputElement).files
+    if (!file) {
+      console.log("No selecciono ninguna foto")
+    }
+    else {
+      this.base64(file[0])
+    }
   }
-}
 
 
 
   elementoDescripcion() {
     this.descripccion = (document.getElementById("miTexto") as HTMLTextAreaElement).value
-    this.usuario.descripcion= this.descripccion
+    this.usuario.descripcion = this.descripccion
     console.log(this.usuario.descripcion)
     if (this.descripccion) {
       this.contador = this.descripccion.length
@@ -88,4 +88,16 @@ selecFotoProfile(){
       }
     }
   }
+  base64(file: File){
+    const reset = new FileReader()
+    reset.readAsDataURL(file)
+    reset.onload= async ()=>{ 
+      const filebase64 = await reset.result 
+      return console.log(filebase64 as string)
+      
+    }
+  
+  } 
 }
+
+

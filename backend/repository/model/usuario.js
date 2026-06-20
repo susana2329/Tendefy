@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 
 const usuariosSchema = mongoose.Schema(
     {
+        spotifyId: {
+            type: String,
+            required: true,
+            unique: true
+        },
         nombre: {
             type: String,
             required: true
@@ -15,8 +20,7 @@ const usuariosSchema = mongoose.Schema(
             required: true
         },
         avatarUrl: {
-            type: String,
-            required: true
+
         },
         descripcion: {
             type: String,
@@ -26,17 +30,20 @@ const usuariosSchema = mongoose.Schema(
             type: Number,
             required: true
         },
-        topArtistas: [
+        topArtists: [
             {
                 nombre: { type: String, required: true },
-                imagenUrl: { type: String, required: true }
+                imagenUrl: { type: String, required: true },
+                _id: false
+
             }
         ],
-        topCanciones: [
+        topTracks: [
             {
                 titulo: { type: String, required: true },
                 artista: { type: String, required: true },
-                coverUrl: { type: String, required: true }
+                coverUrl: { type: String, required: true },
+                _id: false
             }
         ],
         redes: {
@@ -45,13 +52,11 @@ const usuariosSchema = mongoose.Schema(
             twitter: { type: String }
         },
         fotos: [
-            {
-                url: { type: String, required: true },
-                publicId: { type: String, required: true  }
-            }
+
         ]
     }
 )
+
 
 const Usuarios = mongoose.model('Usuarios', usuariosSchema)
 
