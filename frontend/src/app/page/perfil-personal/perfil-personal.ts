@@ -1,24 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
-
-interface ArtistaItem {
-  ranking: number;
-  nombre: string;
-  imagenUrl: string; 
-}
-
-interface CancionItem {
-  ranking: number;
-  titulo: string;
-  artista: string;
-  coverUrl: string; 
-}
-
-interface RedesSociales {
-  instagram: string;
-  spotify: string;
-  twitter: string;
-}
+import{UsuarioPerfil, ArtistaItem,CancionItem, RedesSociales} from '../../models/infousuario';
+import { PersonalService } from '../../services/personal.service';
 
 @Component({
   selector: 'app-perfil-personal',
@@ -28,43 +11,33 @@ interface RedesSociales {
   styleUrl: './perfil-personal.css'
 })
 export class PerfilPersonalComponent implements OnInit {
+  public usuario: UsuarioPerfil | null = null;
   public nombre: string = '';
-  public usuario: string = '';
   public biografia: string = '';
   public fotoperfil: string = '';
    
   public artistas: ArtistaItem[] = [];
   public canciones: CancionItem[] = [];
-  public redes!: RedesSociales;
-
-  constructor() {} 
+   public redes: RedesSociales = {
+    instagram: '',
+    spotify: '',
+    twitter: ''
+  }
+  constructor(private personalService : PersonalService) {} 
 
   ngOnInit(): void {
-    this.nombre = 'Michael B. Jordan';
-    this.usuario = 'michael.B.J';
-    this.biografia = 'Me gusta actuar y modelar. 🎬✨';
-    this.fotoperfil = 'assets/images/rodtang.jpg'; 
-   
-  
-this.artistas = [
-  { ranking: 1, nombre: 'CA7RIEL&PacoA', imagenUrl: 'assets/imagenes/pacoycato.jpg' }, 
-  { ranking: 2, nombre: 'Mon Laferte', imagenUrl: 'assets/imagenes/monlaferte.jpg' },
-  { ranking: 3, nombre: 'Doja Cat', imagenUrl: 'assets/imagenes/dojacat.jpg' },
-  { ranking: 4, nombre: 'Kali Uchis', imagenUrl: 'assets/imagenes/kaliUchis.jpg' }
-];
+    this.personalService.obtenerDatosUsuario().subscribe(
+      {
+      next: (data: UsuarioPerfil) => {
+        this.nombre = data.nombre; 
+        this.biografia = data.descripcion;
+        this.fotoperfil = data.avatarUrl; 
+        this.artistas = data.topArtistas; 
+        this.canciones = data.topCanciones;
+        this.redes = data.redes;
 
-this.canciones = [
-  { ranking: 1, titulo: 'Mi Diosa', artista: 'CA7RIEL & Paco Amoroso', coverUrl: 'assets/imagenes/midiosa.jpg' },
-  { ranking: 2, titulo: 'Amor Completo', artista: 'Mon Laferte', coverUrl: 'assets/imagenes/amorcompleto.jpg' },
-  { ranking: 3, titulo: 'Aint Shit', artista: 'Doja Cat', coverUrl: 'assets/imagenes/aintshit.jpg' },
-  { ranking: 2, titulo: 'Importor', artista: 'CA7RIEL & Paco Amoroso', coverUrl: 'assets/imagenes/impostor.jpg' },
-  { ranking: 3, titulo: 'telepatia', artista: 'Kali Uchis', coverUrl: 'assets/imagenes/kaliUchis.jpg' }
-];
-
-    this.redes = {
-      instagram: 'https://instagram.com/',
-      spotify:   'https://open.spotify.com/',
-      twitter:   'https://twitter.com/',
-    };
+      },
+      error: error => console.log(error)
+    })
   }
 }
