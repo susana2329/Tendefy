@@ -120,15 +120,20 @@ const getCurrentTrack = async (accessToken) =>{
     }
 }
 
+const getTopArtistsByUserId = async (userId) => {
+
+    const usuario = await usuarioRepository.findById(userId)
+
+    return await getTopArtists(usuario.spotifyAccessToken)
+}
+
 
 const getOrCreateUser = async (spotifyUser,topArtists,topTracks) => {
-
-    await usuarioRepository.findBySpotifyId(spotifyUser.id)
     
 
     let usuario = await usuarioRepository.findBySpotifyId(spotifyUser.id)
     console.log(usuario)
-
+    
     if (!usuario) {
 
         usuario = await usuarioRepository.createUser(spotifyUser,topArtists,topTracks)
@@ -136,10 +141,22 @@ const getOrCreateUser = async (spotifyUser,topArtists,topTracks) => {
     }   
     else
         {
-            usuario = await usuarioRepository.updateSpotifyData( spotifyUser,topArtists, topTracks)
+            usuario = await usuarioRepository.updateSpotifyData(topArtists, topTracks,spotifyUser)
     }
+    console.log("ANTES DEL RETURN");
+console.log(usuario);
 
+return usuario;
     return usuario
 }
 
-module.exports = { getAuthorizationUrl,getAccessToken,getTopArtists, getCurrentUser, getTopTracks, getCurrentTrack, getOrCreateUser}
+
+
+const getSpotifyAccessTokenByUserId = async (userId) => {
+
+    const usuario = await usuarioRepository.findById(userId)
+
+    return usuario.spotifyAccessToken
+}
+
+module.exports = { getAuthorizationUrl,getAccessToken,getSpotifyAccessTokenByUserId,getTopArtists,getTopArtistsByUserId, getCurrentUser, getTopTracks, getCurrentTrack, getOrCreateUser}

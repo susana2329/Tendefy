@@ -5,9 +5,12 @@ const matchingRouter = require('./routes/matching.routes')
 const editProfileRouter = require(`./routes/editProfile.routes`)
 const { getMongoDBConnection } = require('./database/conexion');
 const likeRouter = require('./routes/likes.routes')
-require('dotenv').config(); 
+const logger = require('./utils/logger')
+require('dotenv').config({path: './backend/.env'})
 
 getMongoDBConnection();
+
+console.log(process.cwd())
 
 
 app.use(express.json())
@@ -19,6 +22,6 @@ app.use('/', likeRouter)
 app.use(`/spotify/perfil/edit`, editProfileRouter)
 
 
-app.listen(3000, () => {
-    console.log("Servidor levantado");
+app.listen(process.env.PORT, () => {
+    logger.server(`Escuchando en puerto ${process.env.PORT} `)
 });

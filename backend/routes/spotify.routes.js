@@ -1,14 +1,15 @@
 const express = require('express')
 const router = express.Router()
 console.log("SPOTIFY ROUTES CARGADO");
+const authMiddleware = require('../middleware/auth.middleware')
 const spotifyController = require('../controllers/spotify.controller')
 
 router.get("/spotify", spotifyController.login)
 router.get("/spotify/callback", spotifyController.callback)
-router.get("/spotify/artists", spotifyController.getTopArtists)
-router.get("/spotify/tracks", spotifyController.getTopTracks)
-router.get("/spotify/profile",spotifyController.getCurrentUser)
-router.get("/spotify/currentTrack",spotifyController.getCurrentTrack)
+router.get("/spotify/artists", authMiddleware,spotifyController.getTopArtists)
+router.get("/spotify/tracks", authMiddleware,spotifyController.getTopTracks)
+router.get("/spotify/profile",authMiddleware,spotifyController.getCurrentUser)
+router.get("/spotify/currentTrack",authMiddleware,spotifyController.getCurrentTrack)
 
 
 

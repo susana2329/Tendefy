@@ -1,33 +1,63 @@
-const users = require('../mocks/profiles.json')
-const userActual = require('../mocks/me.json')
+const matchingRepository = require('../repository/matching.repository')
 
-const getMatches = (userActual, usuarios) =>{
-    const matches = []
-    
-    for (let h = 0; h < usuarios.length; h++) {
+const getMatches = async (userId) => {
+
+    const [userActual, usuarios] = await matchingRepository.getMatches(userId)
+
+    const artistasActual = []
+
+    for (let i = 0; i < userActual.topArtists.length; i++) {
+        artistasActual.push(userActual.topArtists[i].nombre)
         
-        if(usuarios[h].name === userActual){
-            continue
+    }
+        const matches = []
+        console.log("ACTUAL")
+        console.log(userActual.topArtists)
+
+        console.log("PRIMER USUARIO")
+        console.log(usuarios[0].topArtists)
+        
+    for (let i = 0; i < usuarios.length; i++) {
+            const artistasUsuario = []
+
+            
+            for (let j = 0; j < usuarios[i].topArtists.length; j++) {
+                artistasUsuario.push(usuarios[i].topArtists[j].nombre) 
+                
+                console.log(userActual.topArtists)
+                console.log(usuarios[0].topArtists)
+            }
+    
+    
+
+    const compatibilidad = calcularCompatibilidad(artistasActual,artistasUsuario)
+
+
+    matches.push(
+        {
+            nombre:usuarios[i].nombre,
+            compatibilidad:compatibilidad
         }
+)
 
-        const compatibilidad = calcularCompatibilidad(userActual.artists, usuarios[h].artists)
+}
+    matches.sort((a,b) =>{
+       return b.compatibilidad - a.compatibilidad
+    })
 
-        matches.push({
-            usuario:usuarios[h],
-            compatibility: compatibilidad
-        })
-    }
-        matches.sort(
-            (a,b) =>  b.compatibility - a.compatibility
-        )
-        return matches
-    }
+    return matches
+}
+
+
 
 
 
 const calcularCompatibilidad = (vectorA,vectorB) =>{
     let score = 0
     const n = 0.98
+
+
+
     for (let i = 0; i < vectorA.length; i++) {
       const pesoA = Math.pow(n,i)
         
@@ -59,10 +89,6 @@ const calcularCompatibilidad = (vectorA,vectorB) =>{
 }
 
 
-console.log(
-    getMatches(userActual, users)
-)
 
-module.exports ={
-    getMatches,calcularCompatibilidad
-}
+
+module.exports ={calcularCompatibilidad,getMatches}

@@ -7,6 +7,12 @@ const usuariosSchema = mongoose.Schema(
             required: true,
             unique: true
         },
+        spotifyAccessToken: {
+            type: String
+        },
+        spotifyRefreshToken: {
+            type: String
+        },
         nombre: {
             type: String,
         },
@@ -31,14 +37,14 @@ const usuariosSchema = mongoose.Schema(
         descripcion: {
             type: String,
         },
-        topArtistas: [
+        topArtists: [
             {
                 _id: false,
                 nombre: { type: String, required: true },
                 imagenUrl: { type: String, required: true }
             }
         ],
-        topCanciones: [
+        topTracks: [
             {
                 _id: false,
                 titulo: { type: String, required: true },

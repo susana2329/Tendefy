@@ -12,13 +12,15 @@ const findBySpotifyId = async (spotifyId) => {
 
 
 const createUser = async (spotifyUser,topArtists,topTracks) => {
+       console.log("ARTISTAS:", topArtists.length)
+    console.log("TRACKS:", topTracks.length)
 
     const usuario = await Usuarios.create({
         spotifyId: spotifyUser.id,
         nombre: spotifyUser.display_name,
         email: spotifyUser.email,
-        topArtistas: topArtists,
-        topCanciones: topTracks,
+        topArtists: topArtists,
+        topTracks: topTracks,
         
     })
 
@@ -35,8 +37,8 @@ const updateSpotifyData = async (topArtists,topTracks,spotifyUser) =>{
         },
         {
             email: spotifyUser.email,
-            topArtistas:topArtists,
-            topCanciones: topTracks
+            topArtists:topArtists,
+            topTracks: topTracks
         },
         {
             new: true

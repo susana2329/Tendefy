@@ -38,7 +38,7 @@ console.log("LIKES ACTUALeES")
     if(likeInverso){
         const usuarioA = await User.findById(fromUser)
         const usuarioB = await User.findById(toUser)
-        
+        S
         await Match.create({
             userA: fromUser,
             userB: toUser

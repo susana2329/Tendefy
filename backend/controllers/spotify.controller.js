@@ -1,25 +1,24 @@
 const spotifyService = require('../service/spotify.service')
+const jwt = require('jsonwebtoken')
+const logger = require('../utils/logger')
 
-let accessToken = null
+
+
 
 const login = (req, res) => {
     const url = spotifyService.getAuthorizationUrl()
-    console.log(url)
-
     res.redirect(url)
-
+    
 }
 
 
 const callback = async (req, res) => {
-      console.log('HOLA mi NOMBRE ES CALLBACK')
+     
     try {
-        console.log('soy un try')
-        const code = req.query.code
 
-        const tokenData = await spotifyService.getAccessToken(code)
+        const tokenData = await spotifyService.getAccessToken(req.query.code)
 
-        accessToken = tokenData.access_token
+        const accessToken = await tokenData.access_token
 
         const spotifyUser = await spotifyService.getCurrentUser(accessToken)
         const topTracks = await spotifyService.getTopTracks(accessToken)
@@ -27,19 +26,36 @@ const callback = async (req, res) => {
 
         const usuario = await spotifyService.getOrCreateUser(spotifyUser, topArtists, topTracks)
 
+        usuario.spotifyAccessToken = tokenData.access_token
 
-        console.log('spotify ok')
+        if (tokenData.refresh_token) {
+            usuario.spotifyRefreshToken = tokenData.refresh_token
+        }
 
-        console.log(topArtists.length)
+            await usuario.save()
 
-        console.log(topTracks.length)
+         const token = jwt.sign(
+    {
+        id:usuario._id,
+        spotifyId: usuario.spotifyId
+    },
+        process.env.JWT_SECRET,
+    {
+        expiresIn:'7d'
+    }
+)
 
-        console.log(usuario)
-        res.json({ usuario })
 
+    logger.spotify(`Login exitoso: ${usuario.nombre}`)
+
+
+
+        res.json({
+            usuario,
+            token
+        })
     } catch (err) {
 
-            console.log('ENTRO AL CATCH')
             console.error(err)
         res.status(500).json(err)
     }
@@ -49,6 +65,7 @@ const callback = async (req, res) => {
 const getTopArtists = async (req, res) => {
 
     try {
+        const accessToken = await spotifyService.getSpotifyAccessTokenByUserId(req.user.id)
 
         const artists = await spotifyService.getTopArtists(accessToken)
 
@@ -67,7 +84,10 @@ const getTopArtists = async (req, res) => {
 
 const getTopTracks = async (req, res) => {
 
-    try {
+    try {   
+
+        const accessToken = await spotifyService.getSpotifyAccessTokenByUserId(req.user.id)
+
 
         const tracks = await spotifyService.getTopTracks(accessToken)
 
@@ -82,6 +102,8 @@ const getTopTracks = async (req, res) => {
 
 const getCurrentUser = async (req, res) => {
     try {
+
+        const accessToken = await spotifyService.getSpotifyAccessTokenByUserId(req.user.id)
         const user = await spotifyService.getCurrentUser(accessToken)
         res.json(user)
     } catch (err) {
@@ -94,6 +116,9 @@ const getCurrentUser = async (req, res) => {
 const getCurrentTrack = async (req, res) => {
 
     try {
+
+        const accessToken = await spotifyService.getSpotifyAccessTokenByUserId(req.user.id)
+
         const currentTrack = await spotifyService.getCurrentTrack(accessToken)
         res.json(currentTrack)
     } catch (err) {
