@@ -23,7 +23,7 @@ exports.editProfileService = async (nombre, edad, twitter, instagram, descripcio
                 userEditado.fotos[i] = result
             }
         }
-        const result = editProfileUpdate(id, userEditado)
+        const result = await editProfileUpdate(id, userEditado)
         if(!result){ 
             console.log("volvio vacio en el service: " + result)
         }
