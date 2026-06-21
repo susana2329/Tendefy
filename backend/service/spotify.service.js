@@ -78,9 +78,7 @@ const getTopTracks = async (accessToken) =>{
     titulo: response.data.items[i].name,
     artista: response.data.items[i].artists[0].name,
     coverUrl: response.data.items[i].album.images[0]?.url
-})
-    console.log(response.data.items[i])
-    
+})    
     }
     
     return tracks
@@ -132,7 +130,6 @@ const getOrCreateUser = async (spotifyUser,topArtists,topTracks) => {
     
 
     let usuario = await usuarioRepository.findBySpotifyId(spotifyUser.id)
-    console.log(usuario)
     
     if (!usuario) {
 
@@ -143,8 +140,6 @@ const getOrCreateUser = async (spotifyUser,topArtists,topTracks) => {
         {
             usuario = await usuarioRepository.updateSpotifyData(topArtists, topTracks,spotifyUser)
     }
-    console.log("ANTES DEL RETURN");
-console.log(usuario);
 
 return usuario;
     return usuario

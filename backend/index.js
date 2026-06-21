@@ -6,15 +6,25 @@ const editProfileRouter = require(`./routes/editProfile.routes`)
 const { getMongoDBConnection } = require('./database/conexion');
 const likeRouter = require('./routes/likes.routes')
 const logger = require('./utils/logger')
-require('dotenv').config({path: './backend/.env'})
+require('dotenv').config({path: './backend/.env',quiet:true})
 
 getMongoDBConnection();
 
-console.log(process.cwd())
 
 
 app.use(express.json())
 
+app.use((req, res, next) => {
+    const start = Date.now()
+
+    res.on('finish', () => {
+        logger.debug(
+            `${req.method} ${req.originalUrl} ${res.statusCode} ${Date.now() - start}ms`
+        )
+    })
+
+    next()
+})
 app.use('/auth',spotifyRouter)
 app.use('/',spotifyRouter)
 app.use('/',matchingRouter)
@@ -23,8 +33,8 @@ app.use(`/spotify/perfil/edit`, editProfileRouter)
 
 
 
+logger.startup()
+
 app.listen(process.env.PORT, () => {
-    logger.server(`Escuchando en puerto ${process.env.PORT} `)
-
-
-});
+    logger.server(`Escuchando en puerto ${process.env.PORT}`)
+})

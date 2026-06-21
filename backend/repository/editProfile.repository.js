@@ -1,7 +1,6 @@
 const Usuarios = require(`./model/usuario.js`)
 const { getMongoDBConnection } = require(`../database/conexion`)
 
-getMongoDBConnection(); 
     exports.editProfileUpdate = async (id, usuario) => {
         try {
             const result = await Usuarios.findByIdAndUpdate(id, usuario,  { returnDocument:`after`  })

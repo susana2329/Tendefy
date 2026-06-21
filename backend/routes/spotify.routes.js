@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-console.log("SPOTIFY ROUTES CARGADO");
 const authMiddleware = require('../middleware/auth.middleware')
 const spotifyController = require('../controllers/spotify.controller')
 

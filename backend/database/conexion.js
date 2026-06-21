@@ -11,7 +11,6 @@ exports.getMongoDBConnection = async () => {
     logger.db('MongoDB conectado')
     try {
         await mongoose.connect(URI_MONGO_DB);
-        console.log("DB MongoDB Conectada correctamente....");
     } catch (error) {
         console.log(error);
         process.exit(1);
