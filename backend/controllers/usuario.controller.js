@@ -30,8 +30,8 @@ exports.getPerfilSpotify = async (req, res) => {
             return res.status(404).send(`No se encontro un usuario con ese ID`);
         }
         const datosSpotify = {
-            topArtistas: usuarioEncontrado.topArtistas,
-            topCanciones: usuarioEncontrado.topCanciones
+            topArtistas: usuarioEncontrado.topArtists,
+            topCanciones: usuarioEncontrado.topTracks
         }
         res.setHeader('Content-Type', 'application/json');
         res.status(200).send(JSON.stringify(datosSpotify));
@@ -44,14 +44,3 @@ exports.getPerfilSpotify = async (req, res) => {
     }
 }
 
-/*//prueba
-exports.createUsuario = async (req, res) => {
-    try {
-        const nuevoUsuario = await usuarioService.registrarUsuario(req.body);
-        res.status(201).json(nuevoUsuario);
-    } catch (error) {
-        console.log("Error - CONTROLLER createUsuario", error)
-        res.status(400).json({ mensaje: error.message });
-    }
-}
-*/

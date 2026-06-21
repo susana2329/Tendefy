@@ -1,5 +1,5 @@
-const Usuario = require('./model/usuario')
-
+const Users = require('./model/usuario')
+/*
 exports.obtenerUsuarioPorId = async (id) => {
     try {
         return await Usuario.findById(id).lean();
@@ -16,10 +16,10 @@ const { getMongoDBConnection } = require('../database/conexion.js');
 const Usuarios = require('./model/usuario.js');
 
 getMongoDBConnection();
-
+*/
 exports.findUsuarioById = async (id) => {
     try {
-        return await Usuarios.findById(id).lean();
+        return await Users.findById(id).lean();
     } catch (error) {
         console.error("Error en Repository findUsuarioById:", error);
         throw error;

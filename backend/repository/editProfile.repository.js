@@ -1,5 +1,4 @@
 const Usuarios = require(`./model/usuario.js`)
-const { getMongoDBConnection } = require(`../database/conexion`)
 
     exports.editProfileUpdate = async (id, usuario) => {
         try {
@@ -9,7 +8,6 @@ const { getMongoDBConnection } = require(`../database/conexion`)
                 return null
             }
             return result
-            console.log(JSON.stringify(result))
         }
         catch (error) {
             console.log(`Ocurrio un error: ${error}`)
@@ -20,7 +18,7 @@ const { getMongoDBConnection } = require(`../database/conexion`)
 exports.getProfile = async (id) => { 
     try{
         const result = await Usuarios.findById(id)
-        return JSON.stringify(result)
+        return result
         
     }
     catch(error){

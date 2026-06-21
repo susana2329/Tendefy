@@ -1,5 +1,5 @@
 const usuarioRepository = require('../repository/usuario.repository')
-
+/*
 exports.getUsuarioById = async (id) => {
     try {
         console.log("SERVICE - getUsuarioById")
@@ -15,8 +15,7 @@ exports.getUsuarioById = async (id) => {
 //     return await usuarioRepository.crearUsuario(datosUsuario);
     
 // }
-const usuarioRepository = require('../repository/usuario.repository');
-
+*/
 exports.getUsuarioById = async (id) => {
     try {
         console.log("SERVICE - getUsuarioById");
@@ -25,6 +24,7 @@ exports.getUsuarioById = async (id) => {
         return usuario
     } catch (error) {
         console.log("Error al getUsuarioById()", error);
+        throw error
     }
 };
 

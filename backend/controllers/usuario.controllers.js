@@ -1,3 +1,4 @@
+/*
 const usuarioService = require('../service/usuario.service')
 
 exports.readUsuarioById = async (req, res) => {
@@ -33,3 +34,5 @@ exports.readUsuarioById = async (req, res) => {
 //         res.status(400).json({ mensaje: error.message });
 //     }
 // }
+
+*/
