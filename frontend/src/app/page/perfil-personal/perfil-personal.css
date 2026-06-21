@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,28 +10,43 @@
   max-width: 600px;
   margin: 0 auto;
   font-family: 'Outfit', sans-serif;
-  display: flex; 
+  display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
 .tarjeta-header {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
 }
 
-.btn-editar{
- background-color:#A5DC5D  ;
+.icono-header {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.btn-editar {
+  background-color: #A5DC5D;
+  box-shadow: 0 0 15px rgba(81, 255, 0, 0.4);
   color: #272525;
   padding: 6px 12px;
   border: none;
   border-radius: 20px;
   font-size: 0.9rem;
-  font-weight: bold;         
+  font-weight: bold;
   cursor: pointer;
   display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-editar img{
+  width: 16px;
+  height: 16px;
 }
 
 .perfil-header {
@@ -42,13 +58,21 @@
   margin: 15px 10px 0 10px;
 }
 
-.foto-perfil {
+.avatar-contenedor {
   width: 156px;
   height: 156px;
   border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid #FC3EA0;
+  border: 2px solid #FC3EA0;
   box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.foto-perfil {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .info-contenedor {
@@ -67,7 +91,7 @@
   border-radius: 20px;
   padding: 20px;
   border: 1px solid #FC3EA0;
-  box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+
 }
 
 .lista-artistas {
@@ -80,15 +104,15 @@
 
 .artista-burbuja {
   display: flex;
-  flex-direction: column; 
-  align-items: center;    
-  gap: 10px;              
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .foto-artista {
   width: 80px;
   height: 80px;
-  border-radius: 50%; 
+  border-radius: 50%;
   border: 1px solid #FC3EA0;
   object-fit: cover;
 }
@@ -104,20 +128,20 @@
 
 .cancion-renglon {
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   align-items: center;
   padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .cancion-renglon:last-child {
-  border-bottom: none; 
+  border-bottom: none;
 }
 
 .cancion-numero {
   color: #FC3EA0;
   font-weight: bold;
-  width: 30px; 
+  width: 30px;
 }
 
 .cover-mini {
@@ -131,7 +155,7 @@
 .track-info {
   display: flex;
   flex-direction: column;
-  
+
 }
 
 .item-texto-titulo {
@@ -145,39 +169,38 @@
 
 .redes-grid {
   display: flex;
-  flex-direction: row;         
-  justify-content: space-between; 
-  gap: 10px;            
-  margin-top: 15px;           
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 15px;
 }
 
 .red-btn {
   display: flex;
   align-items: center;
-  justify-content: center;     
+  justify-content: center;
   gap: 6px;
   padding: 8px 16px;
-  border-radius: 20px;        
+  border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
-  text-decoration: none;       
-  border: 1.5px solid transparent;               
+  text-decoration: none;
+  border: 1.5px solid transparent;
 }
- 
+
 .instagram {
   background: linear-gradient(135deg, #833ab4, #e1306c, #fd1d1d);
   color: white;
 }
- 
+
 .spotify {
   background-color: transparent;
   color: #A5DC5D;
   border-color: #A5DC5D;
 }
- 
+
 .twitter {
   background-color: transparent;
   color: #FC3EA0;
   border-color: #FC3EA0;
 }
-
