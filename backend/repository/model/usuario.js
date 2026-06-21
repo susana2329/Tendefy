@@ -61,6 +61,7 @@ const usuariosSchema = mongoose.Schema(
             twitter: { type: String }
 
 
+
         }
     }
 )

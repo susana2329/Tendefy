@@ -4,6 +4,8 @@ const spotifyRouter = require('./routes/spotify.routes')
 const matchingRouter = require('./routes/matching.routes')
 const editProfileRouter = require(`./routes/editProfile.routes`)
 const { getMongoDBConnection } = require('./database/conexion');
+//const usuarioRouter = require('./routes/usuario.routes');
+const usuarioRouter = require('./routes/usuario.router');
 const likeRouter = require('./routes/likes.routes')
 const logger = require('./utils/logger')
 require('dotenv').config({path: './backend/.env',quiet:true})
@@ -25,13 +27,14 @@ app.use((req, res, next) => {
 
     next()
 })
+
 app.use('/auth',spotifyRouter)
 app.use('/',spotifyRouter)
 app.use('/',matchingRouter)
 app.use('/', likeRouter)
+app.use('/api/usuarios', usuarioRouter);
 app.use(`/spotify/perfil/edit`, editProfileRouter)
-
-
+app.use('/api', spotifyRouter);
 
 logger.startup()
 

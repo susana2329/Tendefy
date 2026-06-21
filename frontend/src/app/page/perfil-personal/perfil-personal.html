@@ -1,19 +1,18 @@
 <header class="perfil-header">
     <div class="avatar-contenedor">
-        <img src="assets/imagenes/fotoMBJ.jpg" alt="Foto de perfil" class="foto-perfil">
+        <img [src]="fotoperfil" alt="Foto de perfil" class="foto-perfil">
     </div>
     <div>
         <h1>{{nombre}}</h1>
-        <p class="username">@{{usuario}}</p>
         <p class="bio">{{biografia}}</p>
-        <button class="btn-editar">Editar Perfil</button>
+        <button class="btn-editar" (click)="botonEditar()">Editar Perfil</button>
     </div>
 </header>
 
 <main class="perfil-contenido">
     <section class="tarjeta-musica">
         <div class="tarjeta-header">
-            <h2>👤 Artistas más escuchados</h2>
+            <h2><img src="assets/icons/artista.png" alt="icono musica" class="icono-header"> Artistas más escuchados</h2>
         </div>
 
         <ul class="lista-artistas">
@@ -26,8 +25,9 @@
 
     <section class="tarjeta-musica" id="canciones">
         <div class="tarjeta-header">
-            <h2>🎵 Canciones más escuchadas</h2>
-        </div>
+            <h2><img src="assets/icons/cancion.png" alt="icono musica" class="icono-header"> Canciones más escuchadas</h2>
+    </div>
+  
 
         <ol class="lista-canciones">
             <li *ngFor="let cancion of canciones" class="cancion-renglon">
@@ -42,7 +42,7 @@
     </section>
 
 <section class="tarjeta-musica" id="redes">
-    <h2>🔗 Redes Sociales</h2>
+    <h2><img src="assets/icons/redes.png" alt="icono musica" class="icono-header"> Redes Sociales</h2>
     
     <div class="redes-grid">
         <a [href]="redes.instagram" target="_blank" class="red-btn instagram">Instagram</a>
