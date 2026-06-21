@@ -2,12 +2,13 @@ const { editProfileUpdate } = require(`../repository/editProfile.repository`)
 const { getProfile } = require(`../repository/editProfile.repository`)
 const { subirFotoCloudinary } = require(`../service/cloudinary.service`)
 const Usuarios = require("../repository/model/usuario")
-exports.editProfileService = async (nombre, edad, tw, instagram, descripcion, avatarUrl, arrayUser, id) => {
+exports.editProfileService = async (nombre, edad, twitter, instagram, descripcion, avatarUrl, arrayUser, id) => {
     try {
+        console.log(twitter)
         let userEditado = {
             nombre: nombre,
             edad: edad,
-            redes:{instagram: instagram, twitter:tw},
+            redes:{instagram: instagram, twitter:twitter},
             descripcion : descripcion,
             avatarUrl: avatarUrl,
             fotos: arrayUser
