@@ -33,7 +33,7 @@ export class PerfilPersonalComponent implements OnInit {
           this.nombre = data.nombre;
           this.biografia = data.descripcion;
           this.fotoperfil = data.avatarUrl.url;
-          this.artistas = data.topArtists;
+          this.artistas = data.topArtistas;
           this.canciones = data.topCanciones;
           this.redes = data.redes;
 

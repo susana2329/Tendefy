@@ -3,7 +3,7 @@ export interface UsuarioPerfil {
   nombre: string;
   avatarUrl: { url: string };      
   descripcion: string;
-  topArtists: ArtistaItem[]; 
+  topArtistas: ArtistaItem[]; 
   topCanciones: CancionItem[];
   redes: RedesSociales;
 }
