@@ -23,7 +23,7 @@ export const routes: Routes = [
         component: EditProfile
       },
       {
-        path: 'perfil-publico',
+        path: 'perfil-publico/:id',
         component: PerfilPublicoComponent
       },
       {

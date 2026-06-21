@@ -13,22 +13,21 @@ const usuariosSchema = mongoose.Schema(
         },
         edad: {
             type: Number,
-            required: true
         },
         ubicacion: {
             type: String,
-            required: true
         },
         avatarUrl: {
 
         },
+        fotos: [
+            {
+                url: { type: String },
+                publicId: { type: String}
+            }
+        ],
         descripcion: {
             type: String,
-            required: true
-        },
-        compatibilidad: {
-            type: Number,
-            required: true
         },
         topArtists: [
             {
@@ -58,6 +57,6 @@ const usuariosSchema = mongoose.Schema(
 )
 
 
-const Usuarios = mongoose.model('Usuarios', usuariosSchema)
 
-module.exports = Usuarios
+
+module.exports = mongoose.model('Usuarios', usuariosSchema)
