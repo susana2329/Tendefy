@@ -1,0 +1,103 @@
+const nodemailer = require("nodemailer");
+
+const transporter = nodemailer.createTransport({
+    host: "smtp.sendgrid.net",
+    port: 587,
+    family: 4,
+    debug: true,
+    logger: true,
+    auth: {
+        user: "apikey",
+        pass: process.env.SENDGRID_API_KEY
+    },
+});
+
+const sendMatchEmail = async (email, name, percent) => {
+    try {
+        const info = await transporter.sendMail({
+            from: '"Tendefy App" <tendefyapp@gmail.com>',
+            to: email,
+            replyTo: "tojoaca10@gmail.com",
+            subject: "Tenes un nuevo Match en Tendefy!",
+            text: "Tenes un Match!",
+           /* attachments:[{
+                filename: 'logo.png',
+                path: './public/logo.png',
+                cid: 'tendefylogo'
+        }],*/
+            html: `<div style="background:#0E0B0B;color:white;padding:40px;text-align:center;font-family:Outfit,sans-serif;">
+
+    <div style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:25px;">
+
+        <h1 style="font-size:36px;font-weight:700;margin:0;line-height:1;">
+            <span style="color:white;">Tende</span><span style="color:#FC3EA0;">fy</span>
+        </h1>
+
+        <img src="cid:tendefylogo" width="45">
+
+    </div>
+
+    <h2 style="margin-bottom:20px;">
+        La música hizo su trabajo
+    </h2>
+
+    <p style="color:#C7C7C7;">
+        Hola <strong>${name}</strong>,
+    </p>
+
+    <p style="color:#C7C7C7;">
+        Acabás de conseguir un nuevo match.
+    </p>
+
+    <p style="color:#C7C7C7;">
+        Parece que alguien comparte tu misma frecuencia musical.
+    </p>
+
+    <div style="
+        display:inline-block;
+        margin:20px 0;
+        padding:12px 24px;
+        background:rgba(252,62,160,.15);
+        border:1px solid #FC3EA0;
+        border-radius:999px;
+        color:#FC3EA0;
+        font-weight:bold;
+    ">
+         Compatibilidad: ${percent}%
+    </div>
+
+    <br><br>
+
+    <a
+        href="http://localhost:4200/home"
+        style="
+            background:#FC3EA0;
+            color:white;
+            padding:14px 24px;
+            border-radius:10px;
+            text-decoration:none;
+            font-weight:600;
+            display:inline-block;
+        "
+    >
+        Descubrir mi match
+    </a>
+
+    <p style="
+        margin-top:40px;
+        font-size:12px;
+        color:#888;
+    ">
+        Tendefy • Conectando personas a través de la música
+    </p>
+
+</div>`,
+        });
+
+    console.log("¡Mail enviado! ID:", info.messageId);
+    } catch (err) {
+        console.error("Error completo:", err.response ? err.response.body : err);
+    }
+};
+
+module.exports = {sendMatchEmail}

@@ -21,7 +21,8 @@ getMongoDBConnection();
 exports.getProfile = async (id) => { 
     try{
         const result = await Usuarios.findById(id)
-        return [result]
+        return JSON.stringify(result)
+        
     }
     catch(error){
         console.log(`Hubo un error con la busqueda del usuario ${error}`)
