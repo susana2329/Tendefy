@@ -18,8 +18,7 @@ const usuariosSchema = mongoose.Schema(
             type: String,
         },
         avatarUrl: {
-            type: String,
-            required: true
+
         },
         fotos: [
             {
@@ -30,25 +29,30 @@ const usuariosSchema = mongoose.Schema(
         descripcion: {
             type: String,
         },
-
-        topArtistas: [
+        topArtists: [
             {
                 nombre: { type: String, required: true },
-                imagenUrl: { type: String, required: true }
+                imagenUrl: { type: String, required: true },
+                _id: false
+
             }
         ],
-        topCanciones: [
+        topTracks: [
             {
                 titulo: { type: String, required: true },
                 artista: { type: String, required: true },
-                coverUrl: { type: String, required: true }
+                coverUrl: { type: String, required: true },
+                _id: false
             }
         ],
         redes: {
             instagram: { type: String },
             spotify: { type: String },
             twitter: { type: String }
-        }
+        },
+        fotos: [
+
+        ]
     }
 )
 
