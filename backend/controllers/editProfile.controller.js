@@ -3,9 +3,12 @@ const { getProfileService } = require(`../service/editProfile.service`)
 
 exports.editProfileController = async (req, res) => {
     try { 
+        const id = req.params.id
         const arrayUser = req.files[`cardsFotos`]
         const fotoUrl = req.files[`a`][0]
-        const result = await editProfileService(fotoUrl,arrayUser)
+        const {nombre, edad, tw, instagram, descripcion} = req.body 
+        console.log(nombre)
+        const result = await editProfileService(nombre,edad,tw,instagram,descripcion,fotoUrl,arrayUser,id)
         
         res.status(200).send(`realizado con exito ${result}`)
     }
