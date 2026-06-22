@@ -16,9 +16,13 @@ const callback = async (req, res) => {
      
     try {
 
+
         const tokenData = await spotifyService.getAccessToken(req.query.code)
 
         const accessToken = await tokenData.access_token
+        
+        console.log(tokenData)
+        console.log(accessToken)
 
         const spotifyUser = await spotifyService.getCurrentUser(accessToken)
         const topTracks = await spotifyService.getTopTracks(accessToken)
@@ -26,7 +30,9 @@ const callback = async (req, res) => {
 
         const usuario = await spotifyService.getOrCreateUser(spotifyUser, topArtists, topTracks)
 
+        
         usuario.spotifyAccessToken = tokenData.access_token
+
 
         if (tokenData.refresh_token) {
             usuario.spotifyRefreshToken = tokenData.refresh_token

@@ -27,7 +27,7 @@ exports.editProfileService = async (nombre, edad, twitter, instagram, descripcio
         if(!result){ 
             console.log("volvio vacio en el service: " + result)
         }
-
+        
         return result
     }
     catch (error) {

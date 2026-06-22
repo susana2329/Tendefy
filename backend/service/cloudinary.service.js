@@ -10,6 +10,7 @@ cloudinary.config({
 exports.subirFotoCloudinary = async (foto, carpeta) => {
     try {
         const {public_id, url } = await cloudinary.uploader.upload(foto , { resource_type: "image", use_filename: true, unique_filename: true, aspect_ratio: "9:16", crop: "fill", folder: `tendefy/${carpeta}`})
+        console.log(public_id)
         const result = {public_id, url}
         return result
     }

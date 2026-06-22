@@ -4,10 +4,11 @@ import { resolve } from 'node:path';
 import { OnInit } from '@angular/core';
 import { EditProfileService } from '../../services/edit-profile.service';
 import { UsuarioPerfil } from '../../models/infousuario';
-
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-edit-profile',
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './edit-profile.html',
   styleUrl: './edit-profile.css',
 })
@@ -18,20 +19,19 @@ export class EditProfile implements OnInit {
   fotoPerfil!: File
   twitter: string = ``
   instagram: string = ``
-
   user!: UsuarioPerfil
-
-
-  constructor(private serviceget: EditProfileService) { }
+  avatarUrl: string = ``
+  fotoDefault : string = `tyler.jpg`
+  constructor(private serviceeditprofile: EditProfileService) { }
 
   ngOnInit(): void {
-    this.serviceget.getEditProfile().subscribe({
+    this.serviceeditprofile.getEditProfile().subscribe({
       next: (data: any) => {
         this.user = data
+        this.avatarUrl = this.user.avatarUrl.url
       },
       error: error => {
         console.log(error)
-        alert (error)
       }
 
     })
@@ -105,19 +105,30 @@ export class EditProfile implements OnInit {
     const form = new FormData()
 
     for (let index = 0; index < this.fotos.length; index++) {
-      form.append("fotoCards", this.fotos[index])
+      form.append("cardsFotos", this.fotos[index])
       console.log(form)
     }
-    form.append("fotoProfile", this.fotoPerfil)
+    form.append("fotoPerfil", this.fotoPerfil)
     form.append("descripcion", this.descripcion)
     form.append("instagram", this.instagram)
     form.append("twitter", this.twitter)
     form.forEach((value, key) => {
       console.log(`${key}:`, value);
     });
-      
+
+    console.log(this.twitter, this.instagram)
+    this.serviceeditprofile.parchEditProfile(form).subscribe({
+
+      next: (data: any) => {
+        console.log(data)
+      },
+      error: error => {
+        console.log(error)
+      }
+
+    })
+
+
 
   }
 }
-
-
