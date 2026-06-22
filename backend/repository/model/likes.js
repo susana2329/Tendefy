@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
 
-
-const matchSchema = mongoose.Schema({
-    usuario1: {
+const likeSchema = mongoose.Schema({
+    fromUser: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Usuarios',
         required: true
     },
-    usuario2: {
+    toUser: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Usuarios',
         required: true
@@ -18,4 +17,4 @@ const matchSchema = mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Match', matchSchema)
+module.exports = mongoose.model('Likes', likeSchema);

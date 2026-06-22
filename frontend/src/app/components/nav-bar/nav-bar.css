@@ -1,7 +1,8 @@
 nav {
+
     height: 48px;
 
-    margin: 0 16px 16px;
+    margin: 10% 20px 20px;
 
     display: flex;
     justify-content: space-around;
@@ -18,7 +19,11 @@ button {
     border: none;
     background: none;
 
-    color: white;
-
+    color: #FC3EA0;
+    
     cursor: pointer;
+}
+
+.material-icons{
+    font-size: 42px;
 }

@@ -1,0 +1,23 @@
+{
+    "name": "Tobi",
+    "age": 21,
+    "location": "Buenos Aires",
+    "description": "Co Fundador de Tendefy",
+    "pics": [],
+    "artists": [
+        "Kanye West",
+        "Tyler, The Creator",
+        "Duki",
+        "Wos",
+        "Trueno",
+        "Bizarrap",
+        "Paulo Londra",
+        "Bad Bunny",
+        "Doja Cat",
+        "Mitski"
+    ],
+    "compatibility": 0,
+    "currentArtist": "x",
+    "currentTrack": "x",
+    "currentCover": "x"
+}

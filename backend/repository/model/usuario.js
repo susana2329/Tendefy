@@ -59,8 +59,15 @@ const usuariosSchema = mongoose.Schema(
             instagram: { type: String },
             spotify: { type: String },
             twitter: { type: String }
+
+
+
         }
     }
 )
 
-module.exports = mongoose.model('Usuarios', usuariosSchema)
+
+const Usuarios = mongoose.model('Usuarios', usuariosSchema)
+
+module.exports = Usuarios
+
