@@ -1,7 +1,10 @@
 <main>
+    
     <div class="fotoButton">
         <div class="imagen">
-            <img src="{{usuario.fotoPerfil}}" alt="Patofachero">
+            <form action="perfil/edit/patch" method="patch" enctype="multipart/form-data">
+                <img src="" alt="Patofachero" name="fotoProfile">
+            </form>
         </div>
         <div class="buttonCambiarFoto">
 
@@ -54,8 +57,8 @@
             </div>
             <div class="inputRedes">
                 <form action="" class="formRedes">
-                    <input type="text" placeholder="@ejemplo">
-                    <input type="text" placeholder="@ejemplo">
+                    <input type="text" placeholder="@ejemplo" name="instagram">
+                    <input type="text" placeholder="@ejemplo" name="twitter">
                 </form>
             </div>
         </div>
@@ -64,7 +67,7 @@
     <div class="contCard">
         <h4>Seleccione sus fotos (maximo 5 fotos) </h4>
         <div class="contInputButton" display="none">
-            <form action="">
+            <form action="perfil/edit/patch" method="patch" enctype="multipart/form-data">
                 <input type="file" id="inputFileimg" name="fotoCards" (input)="imagen()" multiple>
             </form>
             <button (click)="buttoninputfile()">
@@ -93,7 +96,7 @@
 
 
     <div class="buttons">
-        <button id="buttonSave">
+        <button id="buttonSave" (click)="actualizarDatos()">
             Guardar cambios
         </button>
 

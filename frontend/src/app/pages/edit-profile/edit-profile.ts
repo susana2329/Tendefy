@@ -12,20 +12,8 @@ import { resolve } from 'node:path';
 export class EditProfile {
   descripccion: string = " "
   contador: number = 0
-  error: boolean = false
   fotos: File[] = []
-  usuario = {
-    nombre: " ",
-    edad: 0,
-    descripcion: " ",
-    redesSociales: {
-      twitter: " ",
-      instagram: " "
-    },
-    fotoPerfil: {
-     
-    }
-  }
+  fotoPerfil!: File
 
   abrirInputProfile() {
     const inputFile = document.getElementById("inputProfile") as HTMLInputElement
@@ -37,7 +25,7 @@ export class EditProfile {
       console.log("No selecciono ninguna foto")
     }
     else {
-      this.base64(file[0])
+      this.fotoPerfil = file[0]
     }
   }
 
@@ -45,8 +33,8 @@ export class EditProfile {
 
   elementoDescripcion() {
     this.descripccion = (document.getElementById("miTexto") as HTMLTextAreaElement).value
-    this.usuario.descripcion = this.descripccion
-    console.log(this.usuario.descripcion)
+    this.descripccion = this.descripccion
+    console.log(this.descripccion)
     if (this.descripccion) {
       this.contador = this.descripccion.length
     }
@@ -88,16 +76,22 @@ export class EditProfile {
       }
     }
   }
-  base64(file: File){
-    const reset = new FileReader()
-    reset.readAsDataURL(file)
-    reset.onload= async ()=>{ 
-      const filebase64 = await reset.result 
-      return console.log(filebase64 as string)
-      
+
+  actualizarDatos() {
+    const form = new FormData()
+    
+    for (let index = 0; index < this.fotos.length; index++) {
+      form.append("fotoCards", this.fotos[index])
+      console.log(form)
     }
-  
-  } 
+    form.append("fotoProfile", this.fotoPerfil)
+    form.append("instagram", this.instagram)
+    form.append ("twitter", this.twitter)
+        form.forEach((value, key) => {
+      console.log(`${key}:`, value);
+    });
+
+  }
 }
 
 

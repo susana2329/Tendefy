@@ -21,7 +21,6 @@ exports.editProfileController = async (req, res) => {
 exports.getProfileController = async (req, res) => {
     try {
         const id = req.user.id
-        console.log("quiero queuqe")
         const result = await getProfileService(id)
         console.log(result)
         if (!result) {
