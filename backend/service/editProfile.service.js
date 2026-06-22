@@ -4,7 +4,6 @@ const { subirFotoCloudinary } = require(`../service/cloudinary.service`)
 const Usuarios = require("../repository/model/usuario")
 exports.editProfileService = async (nombre, edad, twitter, instagram, descripcion, avatarUrl, arrayUser, id) => {
     try {
-        console.log(twitter)
         let userEditado = {
             nombre: nombre,
             edad: edad,

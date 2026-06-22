@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { rejects } from 'node:assert';
 import { resolve } from 'node:path';
+
 
 
 @Component({
@@ -9,24 +10,18 @@ import { resolve } from 'node:path';
   templateUrl: './edit-profile.html',
   styleUrl: './edit-profile.css',
 })
-export class EditProfile {
-  descripccion: string = " "
+export class EditProfile implements OnInit{
+  descripcion: string = " "
   contador: number = 0
   error: boolean = false
   fotos: File[] = []
-  usuario = {
-    nombre: " ",
-    edad: 0,
-    descripcion: " ",
-    redesSociales: {
-      twitter: " ",
-      instagram: " "
-    },
-    fotoPerfil: {
-     
-    }
-  }
+  fotoDefect: string = `../../../../public/tyler.jpg`
+  fotoUser!: File
+  nombreFoto: string = ``
 
+  ngOnInit(): void {
+    
+  }
   abrirInputProfile() {
     const inputFile = document.getElementById("inputProfile") as HTMLInputElement
     inputFile?.click()
@@ -37,18 +32,22 @@ export class EditProfile {
       console.log("No selecciono ninguna foto")
     }
     else {
-      this.base64(file[0])
+      this.fotoUser = file[0]
+      this.preview(this.fotoUser,"imagenPerfil")
+      console.log(this.fotoUser)
+      console.log(this.fotoUser)
+
     }
   }
 
 
 
   elementoDescripcion() {
-    this.descripccion = (document.getElementById("miTexto") as HTMLTextAreaElement).value
-    this.usuario.descripcion = this.descripccion
-    console.log(this.usuario.descripcion)
-    if (this.descripccion) {
-      this.contador = this.descripccion.length
+    let result = (document.getElementById("miTexto") as HTMLTextAreaElement).value
+    this.descripcion = result
+    console.log(this.descripcion)
+    if (this.descripcion) {
+      this.contador = this.descripcion.length
     }
     else {
       this.contador = 0
@@ -64,7 +63,7 @@ export class EditProfile {
       for (let i = 0; i < eventimg.length; i++) {
         if (this.fotos.length < 5) {
           this.fotos.push(eventimg[i])
-          console.log(eventimg[i])
+          this.preview(this.fotos[0], "imgcard")
         }
         else {
           console.log(eventimg[i])
@@ -88,16 +87,16 @@ export class EditProfile {
       }
     }
   }
-  base64(file: File){
-    const reset = new FileReader()
-    reset.readAsDataURL(file)
-    reset.onload= async ()=>{ 
-      const filebase64 = await reset.result 
-      return console.log(filebase64 as string)
-      
-    }
-  
-  } 
+  preview(file: File, img: string) {
+    let imeg = document.getElementById(img) as HTMLImageElement
+    imeg.src = URL.createObjectURL(file)
+  }
+  mandarInfo(){ 
+    
+    let formdata = new FormData()
+    formdata.append("fotoPerfil", this.fotoUser)
+
+  }
 }
 
 

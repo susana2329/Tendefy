@@ -1,11 +1,10 @@
 <main>
     <div class="fotoButton">
         <div class="imagen">
-            <img src="{{usuario.fotoPerfil}}" alt="Patofachero">
+            <img id="imagenPerfil" src="tyler.jpg" alt="Patofachero">
         </div>
         <div class="buttonCambiarFoto">
-
-            <form action="">
+            <form action="spotify/profile/edit/:id" enctype="multipart/form-data" method="patch">
                 <input type="file" id="inputProfile" name="fotoPerfil" (input)="selecFotoProfile()">
             </form>
             <button type="file" (click)="abrirInputProfile()">
@@ -38,24 +37,29 @@
 
     <div class="contenedorRedesSociales">
         <div class="tituloRedes">
-            <img src="enlace.png" alt="enlace">
             <h4>
-                Redes sociales
+                Informacion
             </h4>
         </div>
         <div class="redesSociales">
             <div class="iconRedes">
+                                <img src="assets/icons/profile_picture_user_icon_153847.svg" alt="">
+                <img src="assets/icons/weekly-calendar-outline-event-interface-symbol_icon-icons.com_73108.png" alt="">
                 <img src="instagram.png" alt="iconInstagram">
                 <img src="tw.png" alt="iconTw">
             </div>
             <div class="nombreRedes">
+                <p>nombre</p>
+                <p>edad</p>
                 <p>Instagram</p>
                 <p>Twitter</p>
             </div>
             <div class="inputRedes">
-                <form action="" class="formRedes">
-                    <input type="text" placeholder="@ejemplo">
-                    <input type="text" placeholder="@ejemplo">
+                <form action="" class="formRedes" enctype="multipart/form-data" method="patch">
+                    <input type="text" placeholder="@Luciano" name="name">
+                    <input type="number" placeholder="@23" name="edad">
+                    <input type="text" placeholder="@ejemplo" name="instagram">
+                    <input type="text" placeholder="@ejemplo" name="twitter">
                 </form>
             </div>
         </div>
@@ -64,7 +68,7 @@
     <div class="contCard">
         <h4>Seleccione sus fotos (maximo 5 fotos) </h4>
         <div class="contInputButton" display="none">
-            <form action="">
+            <form action="" enctype="multipart/form-data" method="patch">
                 <input type="file" id="inputFileimg" name="fotoCards" (input)="imagen()" multiple>
             </form>
             <button (click)="buttoninputfile()">
@@ -76,7 +80,7 @@
 
             <div class="imgTextCard">
                 <div class="imgCard">
-                    <img src="{{foto.name}}" class="img" alt="foto">
+                    <img src="{{foto.name}}" class="img" id="imgcard" alt="foto">
                 </div>
                 <p>{{foto.name}}</p>
                 <div class="buttonBorrarImg">
@@ -93,7 +97,7 @@
 
 
     <div class="buttons">
-        <button id="buttonSave">
+        <button id="buttonSave" (click)="mandarInfo()">
             Guardar cambios
         </button>
 

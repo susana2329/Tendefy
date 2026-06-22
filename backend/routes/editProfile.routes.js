@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 
-editProfileRouter.patch(`/patch/:id`,upload.fields([{name:`a`, maxCount:1}, {name:`cardsFotos`, maxCount:5}]), editProfileController)
+editProfileRouter.patch(`/patch/:id`,upload.fields([{name:`fotoProfile`, maxCount:1}, {name:`cardsFotos`, maxCount:5}]), editProfileController)
 
 editProfileRouter.get(`/:id`, getProfileController)
 
