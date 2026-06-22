@@ -7,9 +7,14 @@ const usuariosSchema = mongoose.Schema(
             required: true,
             unique: true
         },
+        spotifyAccessToken: {
+            type: String
+        },
+        spotifyRefreshToken: {
+            type: String
+        },
         nombre: {
             type: String,
-            required: true
         },
         edad: {
             type: Number,
@@ -17,31 +22,37 @@ const usuariosSchema = mongoose.Schema(
         ubicacion: {
             type: String,
         },
+        email: {
+            type: String
+        },
         avatarUrl: {
             type: String,
-            required: true
         },
         fotos: [
             {
-                url: { type: String },
-                publicId: { type: String}
+                url: { type: String, required: true },
+                publicId: { type: String, required: true }
             }
         ],
         descripcion: {
             type: String,
         },
-
-        topArtistas: [
+        topArtists: [
             {
+                _id: false,
                 nombre: { type: String, required: true },
-                imagenUrl: { type: String, required: true }
+                imagenUrl: { type: String, required: true },
+                _id: false
+
             }
         ],
-        topCanciones: [
+        topTracks: [
             {
+                _id: false,
                 titulo: { type: String, required: true },
                 artista: { type: String, required: true },
-                coverUrl: { type: String, required: true }
+                coverUrl: { type: String, required: true },
+                _id: false
             }
         ],
         redes: {
@@ -51,8 +62,5 @@ const usuariosSchema = mongoose.Schema(
         }
     }
 )
-
-
-
 
 module.exports = mongoose.model('Usuarios', usuariosSchema)

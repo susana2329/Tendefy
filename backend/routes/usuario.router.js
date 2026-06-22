@@ -1,12 +1,8 @@
-const express = require('express');
+const express = require('express')
+const usuarioController = require('../controllers/usuario.controller')
 const router = express.Router();
 
-const usuarioController = require('../controllers/usuario.controller');
 
-router.get('/perfil/:id', usuarioController.getPerfil);
-router.get('/perfil/:id/spotify', usuarioController.getPerfilSpotify);
+router.get('/:id', usuarioController.readUsuarioById)
 
-/*//prueba
-router.post('/', usuarioController.createUsuario)
-*/
-module.exports = router;
+module.exports = router
