@@ -39,6 +39,11 @@ button {
     align-items: center;
     font-size: 80%;
 }
+button:hover {
+    box-shadow: 0 6px 20px#fc3ea0FF;
+    transform: scale(0.950);
+    transition: 0.5s;
+}
 
 .buttonCambiarFoto img {
     width: 15%;

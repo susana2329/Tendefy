@@ -12,8 +12,6 @@ require('dotenv').config({path: './backend/.env',quiet:true})
 const cors = require('cors')
 getMongoDBConnection();
 
-
-
 app.use(express.json())
 app.use(cors())
 app.use((req, res, next) => {

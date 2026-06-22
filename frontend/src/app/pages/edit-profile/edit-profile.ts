@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { rejects } from 'node:assert';
 import { resolve } from 'node:path';
-
+import { OnInit } from '@angular/core';
+import { EditProfileService } from '../../services/edit-profile.service';
+import { UsuarioPerfil } from '../../models/infousuario';
 
 @Component({
   selector: 'app-edit-profile',
@@ -9,16 +11,40 @@ import { resolve } from 'node:path';
   templateUrl: './edit-profile.html',
   styleUrl: './edit-profile.css',
 })
-export class EditProfile {
-  descripccion: string = " "
+export class EditProfile implements OnInit {
+  descripcion: string = " "
   contador: number = 0
   fotos: File[] = []
   fotoPerfil!: File
+  twitter: string = ``
+  instagram: string = ``
+
+  user!: UsuarioPerfil
+
+
+  constructor(private serviceget: EditProfileService) { }
+
+  ngOnInit(): void {
+    this.serviceget.getEditProfile().subscribe({
+      next: (data: any) => {
+        this.user = data
+      },
+      error: error => {
+        console.log(error)
+        alert (error)
+      }
+
+    })
+  }
+
+
+
 
   abrirInputProfile() {
     const inputFile = document.getElementById("inputProfile") as HTMLInputElement
     inputFile?.click()
   }
+
   selecFotoProfile() {
     const file = (document.getElementById("inputProfile") as HTMLInputElement).files
     if (!file) {
@@ -29,14 +55,12 @@ export class EditProfile {
     }
   }
 
-
-
   elementoDescripcion() {
-    this.descripccion = (document.getElementById("miTexto") as HTMLTextAreaElement).value
-    this.descripccion = this.descripccion
-    console.log(this.descripccion)
-    if (this.descripccion) {
-      this.contador = this.descripccion.length
+    this.descripcion = (document.getElementById("miTexto") as HTMLTextAreaElement).value
+    this.descripcion = this.descripcion
+    console.log(this.descripcion)
+    if (this.descripcion) {
+      this.contador = this.descripcion.length
     }
     else {
       this.contador = 0
@@ -79,17 +103,19 @@ export class EditProfile {
 
   actualizarDatos() {
     const form = new FormData()
-    
+
     for (let index = 0; index < this.fotos.length; index++) {
       form.append("fotoCards", this.fotos[index])
       console.log(form)
     }
     form.append("fotoProfile", this.fotoPerfil)
+    form.append("descripcion", this.descripcion)
     form.append("instagram", this.instagram)
-    form.append ("twitter", this.twitter)
-        form.forEach((value, key) => {
+    form.append("twitter", this.twitter)
+    form.forEach((value, key) => {
       console.log(`${key}:`, value);
     });
+      
 
   }
 }
