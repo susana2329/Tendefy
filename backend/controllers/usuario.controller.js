@@ -24,14 +24,10 @@ exports.getPerfilSpotify = async (req, res) => {
     try {
         const id = req.params.id;
         console.log("CONTROLLER - getPerfilSpotify por ID", id);
-        const usuarioEncontrado = await usuarioService.getUsuarioById(id);
+        const datosSpotify  = await usuarioService.getPerfilSpotify(id);
 
-        if (!usuarioEncontrado) {
+        if (!datosSpotify) {
             return res.status(404).send(`No se encontro un usuario con ese ID`);
-        }
-        const datosSpotify = {
-            topArtistas: usuarioEncontrado.topArtistas,
-            topCanciones: usuarioEncontrado.topCanciones
         }
         res.setHeader('Content-Type', 'application/json');
         res.status(200).send(JSON.stringify(datosSpotify));
@@ -40,9 +36,9 @@ exports.getPerfilSpotify = async (req, res) => {
         res.status(500).send({
             code: 500,
             message: "Error al obtener el perfil de Spotify"
-        })
+        });
     }
-}
+};
 
 /*//prueba
 exports.createUsuario = async (req, res) => {

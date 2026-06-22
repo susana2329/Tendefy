@@ -11,9 +11,21 @@ exports.getUsuarioById = async (id) => {
     }
 };
 
+exports.getPerfilSpotify = async (id) => {
+    try {
+        const usuario = await usuarioRepository.findUsuarioById(id);
+
+        return {
+            topArtistas: usuario.topArtistas.filter((_, index) => index < 4),
+            topCanciones: usuario.topCanciones.filter((_, index) => index < 5)
+        };
+    } catch (error) {
+        console.log("Error al getUsuarioById()", error);
+    }
+};
+
 /*//prueba
 exports.registrarUsuario= async (datosUsuario) => {
     return await usuarioRepository.crearUsuario(datosUsuario);
-    
 }
 */

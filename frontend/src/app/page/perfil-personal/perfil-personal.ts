@@ -31,6 +31,7 @@ export class PerfilPersonalComponent implements OnInit {
       {
         next: (data: UsuarioPerfil) => {
           this.nombre = data.nombre;
+          this.usuario = data;
           this.biografia = data.descripcion;
           this.fotoperfil = data.avatarUrl.url;
           this.artistas = data.topArtistas;
@@ -39,7 +40,7 @@ export class PerfilPersonalComponent implements OnInit {
 
         },
         error: error => console.log(error)
-      })
+      });
   }
   botonEditar(): void {
     this.router.navigate(['/app/edit']);

@@ -8,7 +8,7 @@ import {UsuarioPerfil} from '../models/infousuario';
 })
 export class PersonalService {
 
-private API_URL = 'http://localhost:3000/api/usuarios/perfil/6a3493ec2b1c6278d4e5905c';
+private API_URL = 'http://localhost:3000/api/usuarios/perfil';
 
   constructor(private _httpClient: HttpClient){}
 
