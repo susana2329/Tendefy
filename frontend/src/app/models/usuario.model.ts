@@ -20,7 +20,7 @@ export interface UsuarioPerfil {
   avatarUrl: string;
   descripcion: string;
   compatibilidad: number;
-  topArtistas: ArtistaItem[];
-  topCanciones: CancionItem[];
+  topArtists: ArtistaItem[];
+  topTracks: CancionItem[];
   redes: RedesSociales;
 }

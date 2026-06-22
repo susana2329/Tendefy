@@ -38,7 +38,7 @@
     <div class="artistas-grid">
       <div
         class="artista-item"
-        *ngFor="let artista of usuario.topArtistas; let i = index"
+        *ngFor="let artista of usuario.topArtists; let i = index"
       >
         <div class="artista-img-wrapper">
           <img 
@@ -60,7 +60,7 @@
     <div class="canciones-list">
       <div
         class="cancion-item"
-        *ngFor="let cancion of usuario.topCanciones; let i = index"
+        *ngFor="let cancion of usuario.topTracks; let i = index"
       >
         <span class="cancion-rank">{{ i + 1 }}</span>
         <img [src]="cancion.coverUrl" 
