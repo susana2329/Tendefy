@@ -50,10 +50,9 @@ const callback = async (req, res) => {
 
 
 
-        res.json({
-            usuario,
-            token
-        })
+    res.redirect(
+  `http://localhost:4200/app/auth/callback?token=${token}`
+)
     } catch (err) {
 
             console.error(err)

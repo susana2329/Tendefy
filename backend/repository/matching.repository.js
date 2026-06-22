@@ -8,6 +8,12 @@ const getMatches = async (userId) =>{
     const usuarios = await User.find({
         _id : {$ne:userId}
     })
+    console.log(
+    usuarios.map(u => ({
+    nombre: u.nombre,
+    id: u._id.toString()
+  }))
+);
     console.log(userActual.nombre)
 console.log(usuarios.length)
  

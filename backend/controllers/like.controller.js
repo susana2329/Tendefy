@@ -2,7 +2,8 @@ const likeService = require('../service/likes.service')
 
 const postLike = async (req, res) => {
     try {
-        const { fromUser, toUser } = req.body
+        const fromUser = req.user.id
+        const {toUser} = req.body
 
 
         const isMatch = await likeService.like(fromUser, toUser)

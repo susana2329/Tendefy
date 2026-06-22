@@ -24,8 +24,7 @@ const getMatches = async (userId) => {
             for (let j = 0; j < usuarios[i].topArtists.length; j++) {
                 artistasUsuario.push(usuarios[i].topArtists[j].nombre) 
                 
-                console.log(userActual.topArtists)
-                console.log(usuarios[0].topArtists)
+            
             }
     
     
@@ -33,12 +32,17 @@ const getMatches = async (userId) => {
     const compatibilidad = calcularCompatibilidad(artistasActual,artistasUsuario)
 
 
-    matches.push(
-        {
-            nombre:usuarios[i].nombre,
-            compatibilidad:compatibilidad
-        }
-)
+   matches.push({
+    id: usuarios[i]._id,
+    nombre: usuarios[i].nombre,
+    edad: usuarios[i].edad,
+    descripcion: usuarios[i].descripcion,
+    fotos: usuarios[i].fotos,
+    avatarUrl: usuarios[i].avatarUrl,
+    topTracks: usuarios[i].topTracks,
+    topArtists:usuarios[i].topArtists,
+    compatibilidad: compatibilidad
+})
 
 }
     matches.sort((a,b) =>{

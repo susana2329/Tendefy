@@ -9,13 +9,13 @@ const usuarioRouter = require('./routes/usuario.router');
 const likeRouter = require('./routes/likes.routes')
 const logger = require('./utils/logger')
 require('dotenv').config({path: './backend/.env',quiet:true})
-
+const cors = require('cors')
 getMongoDBConnection();
 
 
 
 app.use(express.json())
-
+app.use(cors())
 app.use((req, res, next) => {
     const start = Date.now()
 
