@@ -33,7 +33,7 @@ app.use('/',spotifyRouter)
 app.use('/',matchingRouter)
 app.use('/', likeRouter)
 app.use('/api/usuarios', usuarioRouter);
-app.use(`/spotify/perfil/edit`, editProfileRouter)
+app.use(`/perfil/edit`, editProfileRouter)
 app.use('/api', spotifyRouter);
 
 logger.startup()

@@ -1,11 +1,16 @@
 <main>
     <div class="fotoButton">
-        <div class="imagen">
-            <img src="{{usuario.fotoPerfil}}" alt="Patofachero">
+        @if(avatarUrl){
+                    <div class="imagen" >
+            <img [src]="avatarUrl"alt="Patofachero">
         </div>
-        <div class="buttonCambiarFoto">
+        }
+        @else{
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWnEMsLhstI_aVTM9yRDRSUvkhUHKaGubW8EJ8EaXLMA&s=10" alt="">
+        }
 
-            <form action="">
+        <div class="buttonCambiarFoto">
+            <form action="perfil/edit/patch" method="patch" enctype="multipart/form-data">
                 <input type="file" id="inputProfile" name="fotoPerfil" (input)="selecFotoProfile()">
             </form>
             <button type="file" (click)="abrirInputProfile()">
@@ -24,10 +29,14 @@
             </p>
         </div>
         <div class="descriptionCampo">
-            <div class="campoText">
-                <textarea id="miTexto" style="white-space: pre-wrap;" maxlength="100" placeholder="Pon tus gustos"
-                    (input)=elementoDescripcion()></textarea>
-            </div>
+            <form action="perfil/edit/patch" method="patch" enctype="multipart/form-data">
+
+                <div class="campoText">
+                    <textarea id="miTexto" style="white-space: pre-wrap;" maxlength="100" placeholder="Pon tus gustos"
+                        (input)=elementoDescripcion() name="descripcion"></textarea>
+                </div>
+            </form>
+
             <div class="contador">
                 <p>{{contador}}/100</p>
             </div>
@@ -45,7 +54,7 @@
         </div>
         <div class="redesSociales">
             <div class="iconRedes">
-                <img src="instagram.png" alt="iconInstagram">
+                <span class="material-icons">photo_camera</span>
                 <img src="tw.png" alt="iconTw">
             </div>
             <div class="nombreRedes">
@@ -53,9 +62,10 @@
                 <p>Twitter</p>
             </div>
             <div class="inputRedes">
-                <form action="" class="formRedes">
-                    <input type="text" placeholder="@ejemplo">
-                    <input type="text" placeholder="@ejemplo">
+                <form class="formRedes" action="perfil/edit/patch" method="patch" enctype="multipart/form-data">
+
+                    <input [(ngModel)]="instagram" name="instagram">
+                    <input [(ngModel)]="twitter" name="twitter">
                 </form>
             </div>
         </div>
@@ -64,8 +74,8 @@
     <div class="contCard">
         <h4>Seleccione sus fotos (maximo 5 fotos) </h4>
         <div class="contInputButton" display="none">
-            <form action="">
-                <input type="file" id="inputFileimg" name="fotoCards" (input)="imagen()" multiple>
+            <form action="perfil/edit/patch" method="patch" enctype="multipart/form-data">
+                <input type="file" id="inputFileimg" name="cardsFotos" (input)="imagen()" multiple>
             </form>
             <button (click)="buttoninputfile()">
                 Seleccione sus fotos
@@ -93,7 +103,7 @@
 
 
     <div class="buttons">
-        <button id="buttonSave">
+        <button id="buttonSave" (click)="actualizarDatos()">
             Guardar cambios
         </button>
 

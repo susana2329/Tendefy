@@ -28,7 +28,7 @@ Imagen del perfil con el boton
 button {
     border-radius: 30px;
     border: solid 1px #fc3ea0FF;
-    background-color: #0E0B0B   ;
+    background-color: #0E0B0B;
     color: #fc3ea0FF;
     border-width: 2px;
     width: 51%;
@@ -38,6 +38,12 @@ button {
     justify-content: center;
     align-items: center;
     font-size: 80%;
+}
+
+button:hover {
+    box-shadow: 0 6px 20px#fc3ea0FF;
+    transform: scale(0.950);
+    transition: 0.5s;
 }
 
 .buttonCambiarFoto img {
@@ -73,6 +79,11 @@ button {
     border-radius: 16px;
 }
 
+.descriptionCampo:hover {
+    box-shadow: 0 6px 20px#fc3ea0FF;
+    transition: 0.5s;
+}
+
 .contador {
     padding-left: 87%;
 }
@@ -88,6 +99,12 @@ textarea {
     background-color: transparent;
     border: none;
     resize: none;
+}
+
+span {
+    color: #fc3ea0FF;
+    width: 30%;
+    align-items: center;
 }
 
 input,
@@ -178,6 +195,7 @@ h4 {
 input[type="file"] {
     display: none;
 }
+
 .contInputButton {
     display: flex;
     justify-content: center;
@@ -214,9 +232,10 @@ input[type="file"] {
     gap: 5px;
     align-items: center;
     justify-content: center;
-    
+
 }
-.imgTextCard p{
+
+.imgTextCard p {
     width: 90px;
     justify-content: center;
 }
@@ -239,8 +258,9 @@ input[type="file"] {
 
 .buttonBorrarImg {
     display: flex;
-    width: 80%; 
+    width: 80%;
 }
+
 .buttonBorrarImg button {
     width: 100%;
     margin-top: 5%;

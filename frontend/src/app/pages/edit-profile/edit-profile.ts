@@ -1,54 +1,63 @@
 import { Component } from '@angular/core';
 import { rejects } from 'node:assert';
 import { resolve } from 'node:path';
-
-
+import { OnInit } from '@angular/core';
+import { EditProfileService } from '../../services/edit-profile.service';
+import { UsuarioPerfil } from '../../models/infousuario';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-edit-profile',
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './edit-profile.html',
   styleUrl: './edit-profile.css',
 })
-export class EditProfile {
-  descripccion: string = " "
+export class EditProfile implements OnInit {
+  descripcion: string = " "
   contador: number = 0
-  error: boolean = false
   fotos: File[] = []
-  usuario = {
-    nombre: " ",
-    edad: 0,
-    descripcion: " ",
-    redesSociales: {
-      twitter: " ",
-      instagram: " "
-    },
-    fotoPerfil: {
-     
-    }
+  fotoPerfil!: File
+  twitter: string = ``
+  instagram: string = ``
+  user!: UsuarioPerfil
+  avatarUrl: string = ``
+  fotoDefault : string = `tyler.jpg`
+  constructor(private serviceeditprofile: EditProfileService) { }
+
+  ngOnInit(): void {
+    this.serviceeditprofile.getEditProfile().subscribe({
+      next: (data: any) => {
+        this.user = data
+        this.avatarUrl = this.user.avatarUrl.url
+      },
+      error: error => {
+        console.log(error)
+      }
+
+    })
   }
 
   abrirInputProfile() {
     const inputFile = document.getElementById("inputProfile") as HTMLInputElement
     inputFile?.click()
   }
+
   selecFotoProfile() {
     const file = (document.getElementById("inputProfile") as HTMLInputElement).files
     if (!file) {
       console.log("No selecciono ninguna foto")
     }
     else {
-      this.base64(file[0])
+      this.fotoPerfil = file[0]
     }
   }
 
-
-
   elementoDescripcion() {
-    this.descripccion = (document.getElementById("miTexto") as HTMLTextAreaElement).value
-    this.usuario.descripcion = this.descripccion
-    console.log(this.usuario.descripcion)
-    if (this.descripccion) {
-      this.contador = this.descripccion.length
+    this.descripcion = (document.getElementById("miTexto") as HTMLTextAreaElement).value
+    this.descripcion = this.descripcion
+    console.log(this.descripcion)
+    if (this.descripcion) {
+      this.contador = this.descripcion.length
     }
     else {
       this.contador = 0
@@ -88,16 +97,35 @@ export class EditProfile {
       }
     }
   }
-  base64(file: File){
-    const reset = new FileReader()
-    reset.readAsDataURL(file)
-    reset.onload= async ()=>{ 
-      const filebase64 = await reset.result 
-      return console.log(filebase64 as string)
-      
+
+  actualizarDatos() {
+    const form = new FormData()
+
+    for (let index = 0; index < this.fotos.length; index++) {
+      form.append("cardsFotos", this.fotos[index])
+      console.log(form)
     }
-  
-  } 
+    form.append("fotoPerfil", this.fotoPerfil)
+    form.append("descripcion", this.descripcion)
+    form.append("instagram", this.instagram)
+    form.append("twitter", this.twitter)
+    form.forEach((value, key) => {
+      console.log(`${key}:`, value);
+    });
+
+    console.log(this.twitter, this.instagram)
+    this.serviceeditprofile.parchEditProfile(form).subscribe({
+
+      next: (data: any) => {
+        console.log(data)
+      },
+      error: error => {
+        console.log(error)
+      }
+
+    })
+
+
+
+  }
 }
-
-
