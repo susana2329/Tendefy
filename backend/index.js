@@ -4,7 +4,6 @@ const spotifyRouter = require('./routes/spotify.routes')
 const matchingRouter = require('./routes/matching.routes')
 const editProfileRouter = require(`./routes/editProfile.routes`)
 const { getMongoDBConnection } = require('./database/conexion');
-//const usuarioRouter = require('./routes/usuario.routes');
 const usuarioRouter = require('./routes/usuario.router');
 const likeRouter = require('./routes/likes.routes')
 const logger = require('./utils/logger')
