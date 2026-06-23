@@ -3,7 +3,7 @@ Imagen del perfil con el boton
 */
 
 .imagen img {
-    width: 60%;
+    width: 50%;
     border-radius: 70%;
     height: 130px;
     border: solid 3px #fc3ea0FF;
@@ -12,7 +12,7 @@ Imagen del perfil con el boton
 
 .imagen {
     display: flex;
-    width: 50%;
+    width: 55%;
     justify-content: center;
 }
 

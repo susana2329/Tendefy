@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
     constructor(private router: Router) {}
         loginConSpotify(){
-            this.router.navigate(['/home']);
+             window.location.href = 'http://localhost:3000/auth/spotify';
         }
         
 

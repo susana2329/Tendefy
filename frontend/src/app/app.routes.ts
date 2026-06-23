@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login';
 import { MainLayout } from './layouts/main-layout/main-layout';
 import { PerfilPersonalComponent } from './page/perfil-personal/perfil-personal';
 import { PerfilPublicoComponent } from './pages/perfil-publico/perfil-publico';
+import {AuthCallback} from './pages/auth-callback/auth-callback'
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -23,14 +24,18 @@ export const routes: Routes = [
         component: EditProfile
       },
       {
-        path: 'perfil-publico',
+        path: 'perfil-publico/:id',
         component: PerfilPublicoComponent
       },
       {
         path: 'perfil-personal',
         component: PerfilPersonalComponent
 
-      }
+      },
+      {
+        path: 'auth/callback',
+        component: AuthCallback
+}
     ]
   },
   { path: '**', redirectTo: 'login' }

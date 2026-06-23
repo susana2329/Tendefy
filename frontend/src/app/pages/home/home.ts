@@ -1,8 +1,11 @@
-  import { Component, HostListener} from '@angular/core';
-  import {MusicPopup} from '../../components/music-popup/music-popup'
-  import profiles from './profiles.json'
+import { Component, HostListener, OnInit } from '@angular/core';
+import {MusicPopup} from '../../components/music-popup/music-popup'
+import profiles from './profiles.json'
 import { ViewChild } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';  
+import { MatchingService } from '../../services/matching.service';
+import { subscribe } from 'diagnostics_channel';
+
 
   @Component({
     selector: 'app-home',
@@ -10,13 +13,54 @@ import { ChangeDetectorRef } from '@angular/core';
     templateUrl: './home.html',
     styleUrl: './home.css',
   })
-  export class Home {
+
+  export class Home implements OnInit{
 
     constructor(
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private matchingService: MatchingService
 ){}
+
+ngOnInit(){
+  this.matchingService.getProfiles().subscribe({
+  next: (data: any) => {
+    
+
+    this.profiles = data.map((user: any) => {
+      console.log(this.profiles);
+        return {  
+      id:user.id,
+      
+      name: user.nombre,
+      age: user.edad,
+      description: user.descripcion,
+      compatibility: Math.round(user.compatibilidad),
+      
+
+      pics: (user.fotos ?? [])
+        .filter((foto: any) => foto?.url)
+        .map((foto: any) => foto.url),
+
+      
+   artists: (user.topArtists ?? [])
+  .slice(0, 2)
+  .map((artist: any) => artist.nombre),
+
+      location: user.ubicacion ?? "",
+   currentArtist: "",
+currentTrack: "",
+currentCover: ""
+    }});
+console.log("artsu")
+console.log(data[0].topArtists);
+
+
+  }
+});
+
+}
   
-    profiles = profiles
+    profiles: any[] = [];
     cardX:number = 0;
     startX: number = 0;
     currentProfile: number = 0
@@ -104,12 +148,27 @@ nextProfile(direction: number){
 }
 
   like(){
-          this.musicPopup?.close();
+    this.musicPopup?.close();
 
-         
-        
-    this.nextProfile(1)
-  }
+  const profile = this.profiles[this.currentProfile];
+
+  console.log("LIKE A:");
+  console.log(profile.name);
+  console.log(profile.id);
+
+  this.matchingService.like(profile.id)
+    .subscribe({
+      next: () => {
+        this.nextProfile(1);
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
+}
+
+  
+  
 
   dislike(){
           this.musicPopup?.close();
