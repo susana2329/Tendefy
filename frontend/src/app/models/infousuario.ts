@@ -3,8 +3,8 @@ export interface UsuarioPerfil {
   nombre: string;
   avatarUrl: { url: string };      
   descripcion: string;
-  topArtistas: ArtistaItem[]; 
-  topCanciones: CancionItem[];
+  topArtists: ArtistaItem[]; 
+  topTracks: CancionItem[];
   redes: RedesSociales;
 }
 
@@ -19,6 +19,11 @@ export interface CancionItem {
   titulo: string;
   artista: string;
   coverUrl: string; 
+}
+
+export interface SpotifyData {
+  topArtists: ArtistaItem[];
+  topTracks: CancionItem[];
 }
 
 export interface RedesSociales {

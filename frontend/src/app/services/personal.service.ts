@@ -1,19 +1,29 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {UsuarioPerfil} from '../models/infousuario';
+import { UsuarioPerfil, SpotifyData } from '../models/infousuario';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PersonalService {
 
-private API_URL = 'http://localhost:3000/api/usuarios/perfil:id';
+  private API_URL = 'http://localhost:3000/api/usuarios';
 
-  constructor(private _httpClient: HttpClient){}
+  constructor(private _httpClient: HttpClient) { }
 
-  obtenerDatosUsuario(): Observable<UsuarioPerfil>{
-    return this._httpClient.get<UsuarioPerfil>(this.API_URL)
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
   }
-  
+
+  obtenerDatosUsuario(id: string): Observable<UsuarioPerfil> {
+    return this._httpClient.get<UsuarioPerfil>(`${this.API_URL}/perfil/${id}`, { headers: this.getHeaders() });
+  }
+
+  obtenerDatosSpotify(id: string): Observable<SpotifyData> {
+    return this._httpClient.get<SpotifyData>(`${this.API_URL}/perfil/${id}/spotify`, { headers: this.getHeaders() });
+  }
 }

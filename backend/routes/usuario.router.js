@@ -6,5 +6,4 @@ const router = express.Router();
 router.get('/:id', usuarioController.readUsuarioById)
 router.get('/perfil/:id', authMiddleware, usuarioController.getPerfil);
 router.get('/perfil/:id/spotify', authMiddleware, usuarioController.getPerfilSpotify);
-
 module.exports = router

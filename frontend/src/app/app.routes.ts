@@ -3,7 +3,7 @@ import { EditProfile } from './pages/edit-profile/edit-profile';
 import { Home } from './pages/home/home';
 import { LoginComponent } from './pages/login/login';
 import { MainLayout } from './layouts/main-layout/main-layout';
-import { PerfilPersonalComponent } from './page/perfil-personal/perfil-personal';
+import { PerfilPersonalComponent } from './pages/perfil-personal/perfil-personal';
 import { PerfilPublicoComponent } from './pages/perfil-publico/perfil-publico';
 import {AuthCallback} from './pages/auth-callback/auth-callback'
 
@@ -28,7 +28,7 @@ export const routes: Routes = [
         component: PerfilPublicoComponent
       },
       {
-        path: 'perfil-personal',
+        path: 'perfil-personal/:id',
         component: PerfilPersonalComponent
 
       },
