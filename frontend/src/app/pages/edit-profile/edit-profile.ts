@@ -5,6 +5,7 @@ import { UsuarioPerfil } from '../../models/infousuario';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { setTimeout } from 'node:timers/promises';
 @Component({
   selector: 'app-edit-profile',
   imports: [CommonModule, FormsModule],
@@ -135,8 +136,10 @@ export class EditProfile implements OnInit {
     form.append("fotoPerfil", this.fotoPerfil)
     this.patchUser(form)
     this.fotos = []
-    //this.router.navigate(['/app/perfil-personal']);
+    this.router.navigate(['/app/perfil-personal']);
   }
+
+
   patchUser(form: FormData) {
     this.serviceeditprofile.parchEditProfile(form).subscribe({
       next: (data: any) => {
@@ -147,7 +150,9 @@ export class EditProfile implements OnInit {
       }
     })
   }
+
   cerrarSesion(): void {
+    console.log()
     localStorage.removeItem('token');
     this.router.navigate([`/login`])
   }

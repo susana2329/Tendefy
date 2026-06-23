@@ -76,7 +76,7 @@
         <h4>Seleccione sus fotos (maximo 5 fotos) </h4>
         <div class="contInputButton" display="none">
             <form action="perfil/edit/patch" method="patch" enctype="multipart/form-data">
-                <input type="file" id="inputFileimg" name="cardsFotos" (change)="imagen()" multiple>
+                <input type="file" id="inputFileimg" name="cardsFotos" (change)="imagen()" accept="image/*" multiple>
             </form>
             <button (click)="buttoninputfile()">
                 Seleccione sus fotos
