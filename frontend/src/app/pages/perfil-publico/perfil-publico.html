@@ -1,39 +1,30 @@
-<div class="perfil-container" *ngIf="usuario">
+<main>
+  <div class="perfil-container" *ngIf="usuario">
 
-  <div class="perfil-header">
-    <button class="btn-back" (click)="volver()">←</button>
-    <span class="header-title">Perfil publico</span>
-    <button class="btn-menu">⋮</button>
-  </div>
-
-  <div class="perfil-hero">
-    <div class="avatar-wrapper">
-      <img
-        class="avatar-img"
-        [src]="usuario.avatarUrl"
-        [alt]="usuario.nombre"
-      />
-      <div class="avatar-ring"></div>
+    <div class="perfil-header">
+      <button class="btn-back" (click)="volver()">←</button>
+      <span class="header-title">Perfil publico</span>
+      <button class="btn-menu">⋮</button>
     </div>
-    <h2 class="perfil-nombre">{{ usuario.nombre }}</h2>
-    <div class="compatibilidad-badge">
-      <img src="assets/icons/ondas.png" alt="ondas" class="section-icon">
-      <span class="compat-text">{{ usuario.compatibilidad }}% compatible</span>
-    </div>
-  </div>
 
-  <div class="card">
-    <div class="card-title">
-      <img src="assets/icons/user.png" alt="Usuario" class="section-icon">
-      <span>Sobre mi</span>
+    <div class="perfil-hero">
+      <div class="avatar-wrapper">
+        <img class="avatar-img" [src]="usuario.avatarUrl" [alt]="usuario.nombre" />
+        <div class="avatar-ring"></div>
+      </div>
+      <h2 class="perfil-nombre">{{ usuario.nombre }}</h2>
+      <div class="compatibilidad-badge">
+        <img src="assets/icons/ondas.png" alt="ondas" class="section-icon">
+        <span class="compat-text">{{ usuario.compatibilidad }}% compatible</span>
+      </div>
     </div>
-    <p class="card-body">{{ usuario.descripcion }}</p>
-  </div>
 
-  <div class="card">
-    <div class="card-title">
-      <img src="assets/icons/Artistas.png" alt="Artistas" class="section-icon">
-      <span>Artistas mas escuchados</span>
+    <div class="card">
+      <div class="card-title">
+        <img src="assets/icons/user.png" alt="Usuario" class="section-icon">
+        <span>Sobre mi</span>
+      </div>
+      <p class="card-body">{{ usuario.descripcion }}</p>
     </div>
     <div class="artistas-grid">
       <div
@@ -47,10 +38,8 @@
           class="artista-img" />
           <span class="artista-rank">{{ i + 1 }}</span>
         </div>
-        <span class="artista-nombre">{{ artista.nombre }}</span>
       </div>
     </div>
-  </div>
 
   <div class="card">
     <div class="card-title">
@@ -72,35 +61,29 @@
         </div>
       </div>
     </div>
+
+    <div class="card">
+      <div class="card-title">
+        <img src="assets/icons/redes.png" alt="Redes" class="section-icon">
+        <span>Redes sociales</span>
+      </div>
+      <div class="redes-grid">
+        <a *ngIf="usuario.redes.instagram" [href]="usuario.redes.instagram" class="red-btn instagram" target="_blank">
+          <img src="assets/icons/instagram.png" alt="Instagram" class="red-icon" />
+          Instagram
+        </a>
+        <a *ngIf="usuario.redes.spotify" [href]="usuario.redes.spotify" class="red-btn spotify" target="_blank">
+          <img src="assets/icons/spotify.png" alt="Spotify" class="red-icon" />
+          Spotify
+        </a>
+        <a *ngIf="usuario.redes.twitter" [href]="usuario.redes.twitter" class="red-btn twitter" target="_blank">
+          <img src="assets/icons/twitter.png" alt="Twitter" class="red-icon" />
+          Twitter
+        </a>
+      </div>
+    </div>
+
   </div>
 
-  <div class="card">
-    <div class="card-title">
-      <img src="assets/icons/redes.png" alt="Redes" class="section-icon">
-      <span>Redes sociales</span>
-    </div>
-    <div class="redes-grid">
-      <a *ngIf="usuario.redes.instagram" [href]="usuario.redes.instagram" class="red-btn instagram" target="_blank">
-        <img src="assets/icons/instagram.png" alt="Instagram" class="red-icon" />
-        Instagram
-      </a>
-      <a 
-      *ngIf="usuario.redes.spotify" 
-      [href]="usuario.redes.spotify" 
-      class="red-btn spotify" 
-      target="_blank">
-        <img src="assets/icons/spotify.png" alt="Spotify" class="red-icon" />
-        Spotify
-      </a>
-      <a 
-      *ngIf="usuario.redes.twitter" 
-      [href]="usuario.redes.twitter" 
-      class="red-btn twitter" 
-      target="_blank">
-        <img src="assets/icons/twitter.png" alt="Twitter" class="red-icon" />
-        Twitter
-      </a>
-    </div>
-  </div>
 
-</div>
+</main>

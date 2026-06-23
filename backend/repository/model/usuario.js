@@ -26,12 +26,13 @@ const usuariosSchema = mongoose.Schema(
             type: String
         },
         avatarUrl: {
-            type: String,
+            url: { type: String },
+            publicId: { type: String }
         },
         fotos: [
             {
-                url: { type: String, required: true },
-                publicId: { type: String, required: true }
+                url: { type: String },
+                publicId: { type: String }
             }
         ],
         descripcion: {
@@ -55,14 +56,12 @@ const usuariosSchema = mongoose.Schema(
                 _id: false
             }
         ],
-        redes: {
-            instagram: { type: String },
-            spotify: { type: String },
-            twitter: { type: String }
-
-
-
-        }
+        instagram: {
+            type: String },
+        spotify: { 
+            type: String },
+        twitter: { 
+            type: String }
     }
 )
 
