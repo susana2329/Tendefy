@@ -31,15 +31,16 @@ export class PerfilPersonalComponent implements OnInit {
       {
         next: (data: UsuarioPerfil) => {
           this.nombre = data.nombre;
+          this.usuario = data;
           this.biografia = data.descripcion;
           this.fotoperfil = data.avatarUrl.url;
-          this.artistas = data.topArtists;
+          this.artistas = data.topArtistas;
           this.canciones = data.topCanciones;
           this.redes = data.redes;
 
         },
         error: error => console.log(error)
-      })
+      });
   }
   botonEditar(): void {
     this.router.navigate(['/app/edit']);

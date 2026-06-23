@@ -3,13 +3,13 @@ POST http://localhost:3000/api/usuarios HTTP/1.1
 Content-Type: application/json
 
 {
-  "nombre": "Julia Test",
-  "edad": 27,
+  "nombre": "Julieta Test",
+  "edad": 25,
   "ubicacion": "Buenos Aires",
   "avatarUrl": "https://i.pravatar.cc/150",
   "descripcion": "Perfil de prueba para smoke test",
   "compatibilidad": 95,
-  "spotifyId": "julia_test_001",
+  "spotifyId": "julia_test_002",
   "topArtistas": [
     { "nombre": "CA7RIEL", "imagenUrl": "https://i.pravatar.cc/80?img=1" },
     { "nombre": "Mon Laferte", "imagenUrl": "https://i.pravatar.cc/80?img=2" },
@@ -28,7 +28,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/api/usuarios/perfil/6a3732419f56e140eee1d494 HTTP/1.1
+GET http://localhost:3000/api/usuarios/perfil/6a38871e5662a3b5b9f86102 HTTP/1.1
 
 ### Traer perfil Spotify
-GET http://localhost:3000/api/usuarios/perfil/6a3732419f56e140eee1d494/spotify HTTP/1.1
+GET http://localhost:3000/api/usuarios/perfil/6a38871e5662a3b5b9f86102/spotify HTTP/1.1

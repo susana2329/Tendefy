@@ -50,9 +50,9 @@ exports.getPerfilSpotify = async (req, res) => {
     try {
         const id = req.params.id;
         console.log("CONTROLLER - getPerfilSpotify por ID", id);
-        const usuarioEncontrado = await usuarioService.getUsuarioById(id);
+        const datosSpotify  = await usuarioService.getPerfilSpotify(id);
 
-        if (!usuarioEncontrado) {
+        if (!datosSpotify) {
             return res.status(404).send(`No se encontro un usuario con ese ID`);
         }
         const datosSpotify = {
@@ -66,7 +66,7 @@ exports.getPerfilSpotify = async (req, res) => {
         res.status(500).send({
             code: 500,
             message: "Error al obtener el perfil de Spotify"
-        })
+        });
     }
-}
+};
 
