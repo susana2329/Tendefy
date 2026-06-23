@@ -26,36 +26,38 @@
       </div>
       <p class="card-body">{{ usuario.descripcion }}</p>
     </div>
-
-    <div class="card">
-      <div class="card-title">
-        <img src="assets/icons/Artistas.png" alt="Artistas" class="section-icon">
-        <span>Artistas mas escuchados</span>
-      </div>
-      <div class="artistas-grid">
-        <div class="artista-item" *ngFor="let artista of usuario.topArtistas; let i = index">
-          <div class="artista-img-wrapper">
-            <img [src]="artista.imagenUrl" [alt]="artista.nombre" class="artista-img" />
-            <span class="artista-rank">{{ i + 1 }}</span>
-          </div>
-          <span class="artista-nombre">{{ artista.nombre }}</span>
+    <div class="artistas-grid">
+      <div
+        class="artista-item"
+        *ngFor="let artista of usuario.topArtists; let i = index"
+      >
+        <div class="artista-img-wrapper">
+          <img 
+          [src]="artista.imagenUrl" 
+          [alt]="artista.nombre" 
+          class="artista-img" />
+          <span class="artista-rank">{{ i + 1 }}</span>
         </div>
       </div>
     </div>
 
-    <div class="card">
-      <div class="card-title">
-        <img src="assets/icons/cancion.png" alt="Cancion" class="section-icon">
-        <span>Canciones mas escuchadas</span>
-      </div>
-      <div class="canciones-list">
-        <div class="cancion-item" *ngFor="let cancion of usuario.topCanciones; let i = index">
-          <span class="cancion-rank">{{ i + 1 }}</span>
-          <img [src]="cancion.coverUrl" [alt]="cancion.titulo" class="cancion-cover" />
-          <div class="cancion-info">
-            <span class="cancion-titulo">{{ cancion.titulo }}</span>
-            <span class="cancion-artista">{{ cancion.artista }}</span>
-          </div>
+  <div class="card">
+    <div class="card-title">
+      <img src="assets/icons/cancion.png" alt="Cancion" class="section-icon">
+      <span>Canciones mas escuchadas</span>
+    </div>
+    <div class="canciones-list">
+      <div
+        class="cancion-item"
+        *ngFor="let cancion of usuario.topTracks; let i = index"
+      >
+        <span class="cancion-rank">{{ i + 1 }}</span>
+        <img [src]="cancion.coverUrl" 
+        [alt]="cancion.titulo" 
+        class="cancion-cover" />
+        <div class="cancion-info">
+          <span class="cancion-titulo">{{ cancion.titulo }}</span>
+          <span class="cancion-artista">{{ cancion.artista }}</span>
         </div>
       </div>
     </div>

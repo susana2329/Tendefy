@@ -12,7 +12,8 @@
 <main class="perfil-contenido">
     <section class="tarjeta-musica">
         <div class="tarjeta-header">
-            <h2><img src="assets/icons/artista.png" alt="icono musica" class="icono-header"> Artistas más escuchados</h2>
+            <h2><img src="assets/icons/artista.png" alt="icono musica" class="icono-header"> Artistas más escuchados
+            </h2>
         </div>
 
         <ul class="lista-artistas">
@@ -25,13 +26,13 @@
 
     <section class="tarjeta-musica" id="canciones">
         <div class="tarjeta-header">
-            <h2><img src="assets/icons/cancion.png" alt="icono musica" class="icono-header"> Canciones más escuchadas</h2>
-    </div>
-  
+            <h2><img src="assets/icons/cancion.png" alt="icono musica" class="icono-header"> Canciones más escuchadas
+            </h2>
+        </div>
 
         <ol class="lista-canciones">
-            <li *ngFor="let cancion of canciones" class="cancion-renglon">
-                <span class="cancion-numero">{{ cancion.ranking }}</span>
+            <li *ngFor="let cancion of canciones; let i = index" class="cancion-renglon">
+                <span class="cancion-numero">{{ i + 1 }}</span>
                 <img [src]="cancion.coverUrl" alt="Cover" class="cover-mini">
                 <div class="track-info">
                     <span class="item-texto-titulo">{{ cancion.titulo }}</span>
@@ -41,13 +42,13 @@
         </ol>
     </section>
 
-<section class="tarjeta-musica" id="redes">
-    <h2><img src="assets/icons/redes.png" alt="icono musica" class="icono-header"> Redes Sociales</h2>
-    
-    <div class="redes-grid">
-        <a [href]="redes.instagram" target="_blank" class="red-btn instagram">Instagram</a>
-        <a [href]="redes.spotify" target="_blank" class="red-btn spotify">Spotify</a>
-        <a [href]="redes.twitter" target="_blank" class="red-btn twitter">Twitter</a>
-    </div>
-</section>
+    <section class="tarjeta-musica" id="redes">
+        <h2><img src="assets/icons/redes.png" alt="icono musica" class="icono-header"> Redes Sociales</h2>
+
+        <div class="redes-grid">
+            <a *ngIf="redes.instagram" [href]="redes.instagram" target="_blank" class="red-btn instagram">Instagram</a>
+            <a *ngIf="redes.spotify" [href]="redes.spotify" target="_blank" class="red-btn spotify">Spotify</a>
+            <a *ngIf="redes.twitter" [href]="redes.twitter" target="_blank" class="red-btn twitter">Twitter</a>
+        </div>
+    </section>
 </main>
