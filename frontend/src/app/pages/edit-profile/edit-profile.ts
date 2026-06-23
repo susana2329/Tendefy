@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { rejects } from 'node:assert';
-import { resolve } from 'node:path';
 import { OnInit } from '@angular/core';
 import { EditProfileService } from '../../services/edit-profile.service';
 import { UsuarioPerfil } from '../../models/infousuario';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-edit-profile',
   imports: [CommonModule, FormsModule],
@@ -13,31 +12,34 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './edit-profile.css',
 })
 export class EditProfile implements OnInit {
-  descripcion: string = " "
+  descripcion: string = ""
   contador: number = 0
   fotos: File[] = []
   fotoPerfil!: File
   twitter: string = ``
   instagram: string = ``
   user!: UsuarioPerfil
+  previews: string[] = []
+  edad: string = ``
   avatarUrl: string = ``
-  fotoDefault : string = `tyler.jpg`
-  constructor(private serviceeditprofile: EditProfileService) { }
+  name: string = ``
+  constructor(private serviceeditprofile: EditProfileService, private router: Router) { }
 
   ngOnInit(): void {
+    this.getuser()
+
+  }
+  getuser() {
     this.serviceeditprofile.getEditProfile().subscribe({
       next: (data: any) => {
         this.user = data
-        this.avatarUrl = this.user.avatarUrl.url
+        this.avatarUrl = data.avatarUrl.url
       },
       error: error => {
         console.log(error)
       }
-
     })
   }
-
-
 
 
   abrirInputProfile() {
@@ -55,6 +57,8 @@ export class EditProfile implements OnInit {
     }
   }
 
+
+
   elementoDescripcion() {
     this.descripcion = (document.getElementById("miTexto") as HTMLTextAreaElement).value
     this.descripcion = this.descripcion
@@ -67,6 +71,8 @@ export class EditProfile implements OnInit {
     }
   }
 
+
+
   imagen() {
     const eventimg = (document.getElementById("inputFileimg") as HTMLInputElement).files
     if (!eventimg) {
@@ -77,6 +83,7 @@ export class EditProfile implements OnInit {
         if (this.fotos.length < 5) {
           this.fotos.push(eventimg[i])
           console.log(eventimg[i])
+          this.previews = this.fotos.map(file => URL.createObjectURL(file))
         }
         else {
           console.log(eventimg[i])
@@ -93,42 +100,55 @@ export class EditProfile implements OnInit {
   }
 
 
-  borrarImagen(foto: File) {
-    for (let i = 0; i < this.fotos.length; i++) {
-      if (foto == this.fotos[i]) {
+  borrarImagen(foto: string) {
+    for (let i = 0; i < this.previews.length; i++) {
+      if (foto == this.previews[i]) {
+        this.previews.splice(i, 1)
         this.fotos.splice(i, 1)
+        console.log(this.fotos)
       }
     }
   }
 
   actualizarDatos() {
     const form = new FormData()
+    for (let i = 0; i < this.fotos.length; i++) {
+      console.log(this.fotos[i])
+      form.append("cardsFotos", this.fotos[i])
+    }
 
-    for (let index = 0; index < this.fotos.length; index++) {
-      form.append("cardsFotos", this.fotos[index])
-      console.log(form)
+    if (this.name) {
+      form.append("nombre", this.name)
+    }
+    if (this.edad) {
+      form.append("edad", this.edad)
+    }
+    if (this.descripcion) {
+      form.append("descripcion", this.descripcion)
+    }
+    if (this.instagram) {
+      form.append("instagram", this.instagram)
+    }
+    if (this.twitter) {
+      form.append("twitter", this.twitter)
     }
     form.append("fotoPerfil", this.fotoPerfil)
-    form.append("descripcion", this.descripcion)
-    form.append("instagram", this.instagram)
-    form.append("twitter", this.twitter)
-    form.forEach((value, key) => {
-      console.log(`${key}:`, value);
-    });
-
-    console.log(this.twitter, this.instagram)
+    this.patchUser(form)
+    this.fotos = []
+    //this.router.navigate(['/app/perfil-personal']);
+  }
+  patchUser(form: FormData) {
     this.serviceeditprofile.parchEditProfile(form).subscribe({
-
       next: (data: any) => {
         console.log(data)
       },
       error: error => {
         console.log(error)
       }
-
     })
-
-
-
+  }
+  cerrarSesion(): void {
+    localStorage.removeItem('token');
+    this.router.navigate([`/login`])
   }
 }

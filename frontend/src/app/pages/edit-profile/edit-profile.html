@@ -1,18 +1,13 @@
 <main>
-
     <div class="fotoButton">
-        @if(avatarUrl){
-                    <div class="imagen" >
-            <img [src]="avatarUrl"alt="Patofachero">
+
+        <div class="imagen">
+            <img [src]="avatarUrl" alt="quiero queqeu">
         </div>
-        }
-        @else{
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWnEMsLhstI_aVTM9yRDRSUvkhUHKaGubW8EJ8EaXLMA&s=10" alt="">
-        }
 
         <div class="buttonCambiarFoto">
             <form action="perfil/edit/patch" method="patch" enctype="multipart/form-data">
-                <input type="file" id="inputProfile" name="fotoPerfil" (input)="selecFotoProfile()">
+                <input type="file" id="inputProfile" name="fotoPerfil" (change)="selecFotoProfile()">
             </form>
             <button type="file" (click)="abrirInputProfile()">
                 <img src="https://design.penpot.app/assets/by-file-media-id/86bdcaa1-299a-806a-8008-20b567da9ce4"
@@ -33,13 +28,13 @@
             <form action="perfil/edit/patch" method="patch" enctype="multipart/form-data">
 
                 <div class="campoText">
-                    <textarea id="miTexto" style="white-space: pre-wrap;" maxlength="100" placeholder="Pon tus gustos"
+                    <textarea id="miTexto" style="white-space: pre-wrap;" maxlength="200" placeholder="Pon tus gustos"
                         (input)=elementoDescripcion() name="descripcion"></textarea>
                 </div>
             </form>
 
             <div class="contador">
-                <p>{{contador}}/100</p>
+                <p>{{contador}}/200</p>
             </div>
         </div>
     </div>
@@ -48,15 +43,17 @@
 
     <div class="contenedorRedesSociales">
         <div class="tituloRedes">
-            <img src="enlace.png" alt="enlace">
+            <span class="material-icons">emoji_people</span>
             <h4>
-                Redes sociales
+                Informacion personal
             </h4>
         </div>
         <div class="redesSociales">
             <div class="iconRedes">
-                <span class="material-icons">photo_camera</span>
-                <img src="tw.png" alt="iconTw">
+                <span class="material-icons">person</span>
+                <span class="material-icons">calendar_month </span>
+                <span class="material-icons"> photo_camera</span>
+                <span class="material-icons">close</span>
             </div>
             <div class="nombreRedes">
                 <p>nombre</p>
@@ -66,7 +63,8 @@
             </div>
             <div class="inputRedes">
                 <form class="formRedes" action="perfil/edit/patch" method="patch" enctype="multipart/form-data">
-
+                    <input [(ngModel)]="name" name="nombre">
+                    <input [(ngModel)]="edad" name="edad" type="number">
                     <input [(ngModel)]="instagram" name="instagram">
                     <input [(ngModel)]="twitter" name="twitter">
                 </form>
@@ -78,20 +76,19 @@
         <h4>Seleccione sus fotos (maximo 5 fotos) </h4>
         <div class="contInputButton" display="none">
             <form action="perfil/edit/patch" method="patch" enctype="multipart/form-data">
-                <input type="file" id="inputFileimg" name="cardsFotos" (input)="imagen()" multiple>
+                <input type="file" id="inputFileimg" name="cardsFotos" (change)="imagen()" multiple>
             </form>
             <button (click)="buttoninputfile()">
                 Seleccione sus fotos
             </button>
         </div>
         <div class="contImageCard">
-            @for(foto of fotos; track foto ) {
+            @for(foto of previews; track foto ) {
 
             <div class="imgTextCard">
                 <div class="imgCard">
-                    <img src="{{foto.name}}" class="img" alt="foto">
+                    <img src="{{foto}}" class="img" alt="foto">
                 </div>
-                <p>{{foto.name}}</p>
                 <div class="buttonBorrarImg">
                     <button (click)="borrarImagen(foto)">
                         Eliminar
@@ -110,7 +107,7 @@
             Guardar cambios
         </button>
 
-        <button id="buttonClose">
+        <button id="buttonClose" (click)="cerrarSesion()">
             Cerrar sesion
         </button>
     </div>

@@ -3,7 +3,7 @@ const { getProfileService } = require(`../service/editProfile.service`)
 
 exports.editProfileController = async (req, res) => {
     try { 
-                console.log(req.body)
+        console.log(req.body)
         console.log(req.files)
         const id = req.user.id
         const arrayUser = req.files[`cardsFotos`]
@@ -12,10 +12,10 @@ exports.editProfileController = async (req, res) => {
 
         const result = await editProfileService(nombre,edad,twitter,instagram,descripcion,fotoUrl,arrayUser,id)
         
-        res.status(200).send(`realizado con exito ${result}`)
+        res.status(200).json("Se realizo con exito los cambios")
     }
     catch (error) {
-        res.status(500).send({ code: 500, menssage: `Error en intentar remplazar los datos ` })
+        res.status(500).send({ code: 500, menssage: `Error en intentar remplazar los datos ${error}` })
     }
 }
 

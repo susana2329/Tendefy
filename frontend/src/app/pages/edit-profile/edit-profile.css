@@ -12,7 +12,7 @@ Imagen del perfil con el boton
 
 .imagen {
     display: flex;
-    width: 55%;
+    width: 47%;
     justify-content: center;
 }
 
@@ -106,12 +106,6 @@ textarea {
     resize: none;
 }
 
-span {
-    color: #fc3ea0FF;
-    width: 30%;
-    align-items: center;
-}
-
 input,
 textarea {
     outline: none;
@@ -150,7 +144,7 @@ h4 {
     padding-left: 3%;
 }
 
-.tituloRedes img {
+.tituloRedes img,span {
     width: 11%;
 }
 
@@ -164,10 +158,11 @@ h4 {
 .iconRedes {
     display: flex;
     flex-direction: column;
-    width: 10%;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
-
+span{
+    color:#fc3ea0FF; 
+}
 .iconRedes img {
     width: 80%;
 }
@@ -176,7 +171,7 @@ h4 {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 83px;
+    gap:10px; 
 }
 
 .formRedes {
