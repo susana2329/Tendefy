@@ -20,7 +20,7 @@ export class EditProfile implements OnInit {
   twitter: string = ``
   instagram: string = ``
   user!: UsuarioPerfil
-  previews: string[] = []
+  urlImagen: string[] = []
   edad: string = ``
   avatarUrl: string = ``
   name: string = ``
@@ -84,7 +84,7 @@ export class EditProfile implements OnInit {
         if (this.fotos.length < 5) {
           this.fotos.push(eventimg[i])
           console.log(eventimg[i])
-          this.previews = this.fotos.map(file => URL.createObjectURL(file))
+          this.urlImagen = this.fotos.map(file => URL.createObjectURL(file))
         }
         else {
           console.log(eventimg[i])
@@ -102,9 +102,9 @@ export class EditProfile implements OnInit {
 
 
   borrarImagen(foto: string) {
-    for (let i = 0; i < this.previews.length; i++) {
-      if (foto == this.previews[i]) {
-        this.previews.splice(i, 1)
+    for (let i = 0; i < this.urlImagen.length; i++) {
+      if (foto == this.urlImagen[i]) {
+        this.urlImagen.splice(i, 1)
         this.fotos.splice(i, 1)
         console.log(this.fotos)
       }
