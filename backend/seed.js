@@ -11,23 +11,26 @@ const nombres = [
 ];
 
 const ubicaciones = [
-    "Buenos Aires","San Martin", "Córdoba","Merlo", "Rosario", "Mendoza", "La Plata",
-    "Mar del Plata", "Tucumán", "Salta", "Santa Fe", "San Juan","Lugano"
+    "Buenos Aires", "San Martin", "Córdoba", "Merlo", "Rosario", "Mendoza", "La Plata",
+    "Mar del Plata", "Tucumán", "Salta", "Santa Fe", "San Juan", "Lugano"
 ];
 
 const descripciones = [
     "Amante de la música y los viajes",
     "McGregor vs Holloway 2 | 11 de julio, sino gana holloway me muero",
     "Programador de día, músico de noche",
-    "tantos mocks vas a necesitar loco",
+    "Tantos mocks vas a necesitar loco",
     "Fan del indie y el café",
     "Deportista MMA",
+    "Me duele el cerebro",
     "Buscando gente con buen gusto",
     "El rock es mi idioma",
+    "Si antes no veia ahora no veo nada",
     "El indio siempre presente",
     "Pop, electrónica y mucha energía",
-    "Si no conoces a este artista, te lo presento",
-    "Mis auriculares siempre puestos",
+    "Si no conoces a este artista, te lo presento ",
+    "Khabib volve te extraño",
+    "Los auriculares siempre puestos",
     "Los odio a todos"
 ];
 
@@ -78,7 +81,18 @@ function randomItems(array, n) {
 function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
+function generarFotos(indiceUsuario) {
+    const cantidadFotos = randomInt(1, 4);
+    const fotos = [];
+    for (let i = 0; i < cantidadFotos; i++) {
+        const imgNum = ((indiceUsuario + i) % 70) + 1;
+        fotos.push({
+            url: `https://i.pravatar.cc/400?img=${imgNum}`,
+            publicId: `mock_foto_${indiceUsuario}_${i}`
+        });
+    }
+    return fotos;
+}
 function generarUsuarios(cantidad) {
     const usuarios = [];
     for (let i = 0; i < cantidad; i++) {
@@ -89,6 +103,7 @@ function generarUsuarios(cantidad) {
             edad: randomInt(18, 40),
             ubicacion: ubicaciones[i % ubicaciones.length],
             avatarUrl: `https://i.pravatar.cc/300?img=${(i % 70) + 1}`,
+            fotos: generarFotos(i),  
             descripcion: descripciones[i % descripciones.length],
             topArtists: randomItems(artistas, 4),
             topTracks: randomItems(canciones, 5),
