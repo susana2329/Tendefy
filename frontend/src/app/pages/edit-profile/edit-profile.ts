@@ -114,10 +114,8 @@ export class EditProfile implements OnInit {
   actualizarDatos() {
     const form = new FormData()
     for (let i = 0; i < this.fotos.length; i++) {
-      console.log(this.fotos[i])
       form.append("cardsFotos", this.fotos[i])
     }
-
     if (this.name) {
       form.append("nombre", this.name)
     }
