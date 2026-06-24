@@ -7,46 +7,17 @@
 }
 
 .perfil-contenido {
-  max-width: 600px;
-  margin: 0 auto;
-  font-family: 'Outfit', sans-serif;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.tarjeta-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.icono-header {
-  width: 24px;
-  height: 24px;
-  vertical-align: middle;
-  margin-right: 8px;
-}
-
-.btn-editar {
-  background-color: #A5DC5D;
-  box-shadow: 0 0 15px rgba(81, 255, 0, 0.4);
-  color: #272525;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.btn-editar img{
-  width: 16px;
-  height: 16px;
+.section-icon {
+    width: 24px;
+    height: 24px;
 }
 
 .perfil-header {
@@ -66,7 +37,6 @@
   box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
   overflow: hidden;
   flex-shrink: 0;
-  position: relative;
 }
 
 .foto-perfil {
@@ -86,20 +56,41 @@
   font-size: 0.85rem;
 }
 
-.tarjeta-musica {
-  background-color: #221c1f;
+.btn-editar {
+  background-color: #A5DC5D;
+  box-shadow: 0 0 15px rgba(81, 255, 0, 0.4);
+  color: #272525;
+  padding: 6px 12px;
+  border: none;
   border-radius: 20px;
-  padding: 20px;
-  border: 1px solid #FC3EA0;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: fit-content;
+}
 
+.card {
+    background-color: #221c1f;
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid #FC3EA0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: white;
 }
 
 .lista-artistas {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  list-style: none;
-
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
 .artista-burbuja {
@@ -155,7 +146,6 @@
 .track-info {
   display: flex;
   flex-direction: column;
-
 }
 
 .item-texto-titulo {
@@ -169,10 +159,9 @@
 
 .redes-grid {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
-  margin-top: 15px;
 }
 
 .red-btn {

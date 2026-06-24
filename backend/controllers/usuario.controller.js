@@ -1,49 +1,50 @@
-const usuarioService = require('../service/usuario.service')
+const usuarioService = require('../service/usuario.service');
 
 exports.getPerfil = async (req, res) => {
     try {
         const id = req.params.id;
-        console.log("CONTROLLER - getPerfil por Id", id);
-        const usuarioEncontrado = await usuarioService.getUsuarioById(id);
 
+        const usuario = await usuarioService.getUsuarioById(id);
 
-        if (!usuarioEncontrado) {
-            return res.status(404).send(`No fue posible encontrar un usuario con ese ID`);
+        if (!usuario) {
+            return res.status(404).send({
+                message: "No se encontró usuario"
+            });
         }
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).send(JSON.stringify(usuarioEncontrado));
+
+        return res.status(200).json(usuario);
+
     } catch (error) {
-        console.log("Error en Controller getperfil", error);
-        res.status(500).send({
+        console.log("Error getPerfil", error);
+
+        return res.status(500).send({
             code: 500,
-            message: "Error al obtener el perfil del usuario"
+            message: "Error al obtener perfil"
         });
     }
 };
 
-          
+
 exports.getPerfilSpotify = async (req, res) => {
     try {
         const id = req.params.id;
-        console.log("CONTROLLER - getPerfilSpotify por ID", id);
-        const usuarioEncontrado = await usuarioService.getPerfilSpotify(id);
 
-        if (!usuarioEncontrado) {
-            return res.status(404).send(`No se encontro un usuario con ese ID`);
+        const spotifyData = await usuarioService.getPerfilSpotify(id);
+
+        if (!spotifyData) {
+            return res.status(404).send({
+                message: "No se encontraron datos Spotify"
+            });
         }
 
-        const datosSpotify = {
-            topArtistas: usuarioEncontrado.topArtists,
-            topCanciones: usuarioEncontrado.topTracks
-        }
+        return res.status(200).json(spotifyData);
 
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).send(JSON.stringify(datosSpotify));
     } catch (error) {
-        console.log("Error en Controller getPerfilSpotify", error);
-        res.status(500).send({
+        console.log("Error getPerfilSpotify", error);
+
+        return res.status(500).send({
             code: 500,
-            message: "Error al obtener el perfil de Spotify"
+            message: "Error al obtener Spotify"
         });
     }
 };

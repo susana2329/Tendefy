@@ -1,29 +1,36 @@
-const usuarioRepository = require('../repository/usuario.repository')
-
+const usuarioRepository = require('../repository/usuario.repository');
 
 exports.getUsuarioById = async (id) => {
     try {
-        console.log("SERVICE - getUsuarioById")
-        let usuario = await usuarioRepository.obtenerUsuarioPorId(id)
+        const usuario = await usuarioRepository.obtenerUsuarioPorId(id);
 
-        if (usuario) {
-            usuario.topArtists = usuario.topArtists.filter((_, index) => index < 4)
-            usuario.topTracks = usuario.topTracks.filter((_, index) => index < 5)
-        }
+        if (!usuario) return null;
 
-        return usuario
+        return {
+            ...usuario,
+            topArtists: (usuario.topArtists || []).slice(0, 4),
+            topTracks: (usuario.topTracks || []).slice(0, 5)
+        };
+
     } catch (error) {
-        console.log("Error en getUsuarioById()", error)
+        console.log("Error getUsuarioById", error);
+        throw error;
     }
-}
+};
+
 exports.getPerfilSpotify = async (id) => {
     try {
         const usuario = await usuarioRepository.obtenerUsuarioPorId(id);
+
+        if (!usuario) return null;
+
         return {
-            topArtists: usuario.topArtists.filter((_, index) => index < 4),
-            topTracks: usuario.topTracks.filter((_, index) => index < 5)
+            topArtists: (usuario.topArtists || []).slice(0, 4),
+            topTracks: (usuario.topTracks || []).slice(0, 5)
         };
+
     } catch (error) {
-        console.log("Error al getPerfilSpotify()", error);
+        console.log("Error getPerfilSpotify", error);
+        throw error;
     }
 };

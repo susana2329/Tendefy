@@ -6,6 +6,7 @@ export interface UsuarioPerfil {
   topArtists: ArtistaItem[]; 
   topTracks: CancionItem[];
   redes: RedesSociales;
+  spotifyId: string;
 }
 
 export interface ArtistaItem {
