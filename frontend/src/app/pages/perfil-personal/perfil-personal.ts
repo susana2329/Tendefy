@@ -30,12 +30,13 @@ export class PerfilPersonalComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
+  id: any;
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    this.id = this.route.snapshot.paramMap.get('id');
 
-    if (!id) return;
+    if (!this.id) return;
 
-    this.personalService.obtenerDatosUsuario(id).subscribe({
+    this.personalService.obtenerDatosUsuario(this.id).subscribe({
       next: (data: UsuarioPerfil) => {
         this.usuario = data;
         this.redes = data.redes;
@@ -45,7 +46,7 @@ export class PerfilPersonalComponent implements OnInit {
       }
     });
 
-    this.personalService.obtenerDatosSpotify(id).subscribe({
+    this.personalService.obtenerDatosSpotify(this.id).subscribe({
       next: (data: SpotifyData) => {
         this.artistas = data.topArtists;
         this.canciones = data.topTracks;

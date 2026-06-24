@@ -20,13 +20,16 @@ export class PerfilPublicoComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
+  id : any;
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    this.id = this.route.snapshot.paramMap.get('id');
+    console.log(this.id);
 
-    if (id) {
-      this.perfilPublicoService.obtenerUsuarioPorId(id).subscribe({
+    if (this.id) {
+      this.perfilPublicoService.obtenerUsuarioPorId(this.id).subscribe({
         next: (data) => {
           this.usuario = data;
+          console.log(this.usuario);
         },
         error: (error) => {
           console.log('Error al traer el usuario', error);

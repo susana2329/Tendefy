@@ -8,4 +8,16 @@ import { RouterLink } from '@angular/router';
   templateUrl: './nav-bar.html',
   styleUrl: './nav-bar.css',
 })
-export class NavBar {}
+export class NavBar {
+  userid ='';
+  payload:any
+  ngOnInit(){
+    const token = localStorage.getItem('token');
+    if(token){
+     this.payload = JSON.parse(atob(token.split('.')[1]));
+    }
+    console.log(this.payload, 'ACA ESTA PAYLOAD')
+    this.userid = this.payload.id;
+  }
+
+}

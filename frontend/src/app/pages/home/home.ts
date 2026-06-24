@@ -5,11 +5,12 @@ import { ViewChild } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';  
 import { MatchingService } from '../../services/matching.service';
 import { subscribe } from 'diagnostics_channel';
+import { RouterLink } from '@angular/router';
 
 
   @Component({
     selector: 'app-home',
-    imports: [MusicPopup],
+    imports: [MusicPopup, RouterLink],
     templateUrl: './home.html',
     styleUrl: './home.css',
   })

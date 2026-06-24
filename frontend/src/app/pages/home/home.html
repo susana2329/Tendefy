@@ -47,9 +47,9 @@
 
         <div class="profile-info">
 
-            <h2>
+            <button [routerLink]="['/app/perfil-publico/', profiles[currentProfile].id] ">
                 {{ profiles[currentProfile].name }}, {{ profiles[currentProfile].age }}
-            </h2>
+            </button>
 
             <p>
                 <span class="material-symbols-outlined">
